@@ -35,7 +35,7 @@ export default function Home() {
     <a href="#conteudo" className="skip-link">Pular para o conteúdo</a>
 
     <header className="nav-wrap">
-      <nav className="nav liquid" data-glass="0.8" aria-label="Navegação principal">
+      <nav className="nav liquid" aria-label="Navegação principal">
         <a className="signature" href="#inicio" aria-label="Bruna Rodrigues, início">br<span className="accent">.</span><span className="nav-name">Bruna Rodrigues</span></a>
         <div className="nav-links"><a href="#segmentos">Exemplos</a><a href="#incluso">O que inclui</a><a href="#projetos">Projetos</a><a href="#pedido">Pedir orçamento</a></div>
         <Ext href={whatsapp(orcamento)} className="nav-cta">Quero meu site</Ext>
@@ -260,6 +260,6 @@ export default function Home() {
     <footer className="container footer"><a className="signature" href="#inicio" aria-label="Bruna Rodrigues, voltar ao início">br<span className="accent">.</span></a><p>© {new Date().getFullYear()} {profile.name} · Sites para negócios de {profile.location} e região</p><a href="#inicio">Voltar ao topo ↑</a></footer>
 
     <div className="cursor" aria-hidden="true"><span className="cursor-label">Ver</span></div>
-    <a href={whatsapp(orcamento)} target="_blank" rel="noopener noreferrer" className="wa-float liquid" data-glass="1"><Wa /><span className="wa-label">Quero meu site</span><span className="sr-only"> (abre o WhatsApp)</span></a>
+    <a href={whatsapp(orcamento)} target="_blank" rel="noopener noreferrer" className="wa-float liquid"><Wa /><span className="wa-label">Quero meu site</span><span className="sr-only"> (abre o WhatsApp)</span></a>
   </>;
 }

@@ -1,70 +1,59 @@
 'use client';
-import { useState } from 'react';
-import { segments, whatsapp } from './content';
+import { useEffect, useRef } from 'react';
+import { segments } from './content';
+import { initBriefing } from './lib-briefing';
 
-const temHoje = ['Só Instagram', 'Instagram e Facebook', 'Linktree', 'Um site antigo', 'Nada ainda'];
-const objetivos = ['Receber agendamentos', 'Receber pedidos de orçamento', 'Mostrar meus serviços e preços', 'Aparecer no Google'];
+const perguntas = [
+  { name: 'negocio', titulo: 'Qual é o seu negócio?', dica: 'Escolha o que mais se parece com o seu.', opcoes: segments.map(s => s.name) },
+  { name: 'hoje', titulo: 'O que você tem hoje?', dica: 'Assim eu sei de onde partimos.', opcoes: ['Só Instagram', 'Instagram e Facebook', 'Linktree', 'Um site antigo', 'Nada ainda'] },
+  { name: 'objetivo', titulo: 'O que o site precisa fazer por você?', dica: 'Escolha o principal. O resto a gente conversa.', opcoes: ['Receber agendamentos', 'Receber pedidos de orçamento', 'Mostrar meus serviços e preços', 'Aparecer no Google'] },
+];
 
-/**
- * Briefing rápido: o visitante responde 4 perguntas e a conversa no WhatsApp já começa organizada.
- * Nada é enviado pelo site: o botão só abre o WhatsApp com a mensagem pronta.
- */
+/** Pedido guiado em etapas. A lógica fica em lib-briefing.ts. */
 export default function Briefing() {
-  const [negocio, setNegocio] = useState('');
-  const [hoje, setHoje] = useState('');
-  const [objetivo, setObjetivo] = useState('');
-  const [cidade, setCidade] = useState('');
-
-  const linhas = [
-    'Olá, Bruna! Quero um site para o meu negócio.',
-    negocio && `• Negócio: ${negocio}`,
-    hoje && `• Hoje eu tenho: ${hoje}`,
-    objetivo && `• Quero que o site ajude a: ${objetivo.toLowerCase()}`,
-    cidade.trim() && `• Cidade: ${cidade.trim()}`,
-  ].filter(Boolean).join('\n');
+  const ref = useRef<HTMLFormElement>(null);
+  useEffect(() => (ref.current ? initBriefing(ref.current) : undefined), []);
 
   return (
-    <form className="brief liquid-card" onSubmit={e => { e.preventDefault(); window.open(whatsapp(linhas), '_blank', 'noopener'); }}>
-      <fieldset>
-        <legend>Qual é o seu negócio?</legend>
-        <div className="brief-options">
-          {segments.map(s => (
-            <label key={s.id} className={negocio === s.name ? 'opt is-on' : 'opt'}>
-              <input type="radio" name="negocio" value={s.name} checked={negocio === s.name} onChange={() => setNegocio(s.name)} />{s.name}
-            </label>
-          ))}
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>O que você tem hoje?</legend>
-        <div className="brief-options">
-          {temHoje.map(t => (
-            <label key={t} className={hoje === t ? 'opt is-on' : 'opt'}>
-              <input type="radio" name="hoje" value={t} checked={hoje === t} onChange={() => setHoje(t)} />{t}
-            </label>
-          ))}
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>O que o site precisa fazer por você?</legend>
-        <div className="brief-options">
-          {objetivos.map(o => (
-            <label key={o} className={objetivo === o ? 'opt is-on' : 'opt'}>
-              <input type="radio" name="objetivo" value={o} checked={objetivo === o} onChange={() => setObjetivo(o)} />{o}
-            </label>
-          ))}
-        </div>
-      </fieldset>
-      <div className="brief-city">
-        <label htmlFor="brief-cidade">Cidade</label>
-        <input id="brief-cidade" type="text" autoComplete="address-level2" placeholder="Ex.: Pará de Minas" value={cidade} onChange={e => setCidade(e.target.value)} />
+    <form ref={ref} className="brief liquid-card" aria-labelledby="t-pedido" noValidate>
+      <div className="brief-head">
+        <span className="mono">PERGUNTA <b className="brief-count">1 de 4</b></span>
+        <div className="brief-bar" aria-hidden="true"><span /></div>
       </div>
-      <div className="brief-preview" aria-live="polite">
-        <span className="mono">PRÉVIA DA MENSAGEM</span>
-        <pre>{linhas}</pre>
+
+      {perguntas.map((p, n) => (
+        <fieldset key={p.name} className="brief-q" data-name={p.name}>
+          <legend><span className="brief-n">0{n + 1}</span>{p.titulo}</legend>
+          <p className="brief-tip">{p.dica}</p>
+          <div className="brief-grid">
+            {p.opcoes.map(o => (
+              <label key={o} className="opt">
+                <input type="radio" name={p.name} value={o} />
+                <span className="opt-dot" aria-hidden="true" />
+                <span>{o}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      ))}
+
+      <fieldset className="brief-q" data-name="">
+        <legend><span className="brief-n">04</span>Onde fica o seu negócio?</legend>
+        <p className="brief-tip">Opcional. Ajuda a pensar no público da sua cidade.</p>
+        <label htmlFor="brief-cidade" className="sr-only">Cidade</label>
+        <input id="brief-cidade" className="brief-input" type="text" autoComplete="address-level2" placeholder="Ex.: Pará de Minas" />
+        <div className="brief-preview" aria-live="polite">
+          <span className="mono">SUA MENSAGEM</span>
+          <pre>Olá, Bruna! Quero um site para o meu negócio.</pre>
+        </div>
+        <button type="submit" className="button primary brief-send">Enviar pelo WhatsApp</button>
+        <p className="brief-note">Abre o WhatsApp com a mensagem pronta. Você revisa antes de enviar.</p>
+      </fieldset>
+
+      <div className="brief-nav">
+        <button type="button" className="brief-back">← Voltar</button>
+        <button type="button" className="brief-next">Continuar →</button>
       </div>
-      <button type="submit" className="button primary brief-send">Enviar pelo WhatsApp</button>
-      <p className="brief-note">Abre o WhatsApp com a mensagem pronta. Você revisa antes de enviar.</p>
     </form>
   );
 }
