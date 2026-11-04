@@ -11,7 +11,7 @@ Fonte: https://github.com/ovodioncadev-ux/sitegestao
 - O README descreve uma fase anterior à árvore atual. Não foi apresentado como uma confirmação de estado de produção.
 - Não foram executados os testes do projeto original nem validadas suas conexões ao banco. O portfólio afirma a presença dos recursos no código.
 - Diagrama do portfólio: ilustrativo, com conexões conceituais fundamentadas na estrutura do repositório.
-- ovodionca.webp: captura real de https://ovo-di-onca0826.vercel.app, usada no hero e como demonstração.
+- ovodionca.webp: captura real do site oficial https://ovodionca.com.br (03/11/2026), usada no hero. Página de receitas: https://ovodionca.com.br/Receitas.html.
 - gestao-reference.webp: imagem versionada em Interface Stitch/02_sistema_de_gest_o_painel_operacional/screen.png. É uma referência de design, contém dados ilustrativos e elementos que não representam garantia do escopo implementado.
 
 ## FindOfertas

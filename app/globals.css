@@ -113,3 +113,10 @@
 :root ::selection{background:#bfe882;color:#141811}
 :root .process-list article>span:last-child{color:var(--accent)}
 }
+/* Contato: e-mail + copiar (funciona sem app de e-mail) */
+.contact-actions{display:flex;flex-wrap:wrap;gap:10px}
+.copy-email{background:transparent;color:var(--text);font-family:inherit;cursor:pointer}
+.copy-email:hover{border-color:var(--accent);color:var(--accent)}
+.copy-email:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+.contact-email{margin-right:auto;color:var(--accent);font-size:13px;user-select:all}
+@media(max-width:760px){.contact-email{width:100%;margin-bottom:4px}}
