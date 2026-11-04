@@ -37,6 +37,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="pt-BR">
       <head>
+        {/* Banner de cookies (Secure Privacy): carrega antes da tag do Google */}
+        <script src="https://app.secureprivacy.ai/script/6aeb4c8a5c28664dc3928c6c.js" />
         {/* Google tag (gtag.js) */}
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`} />
         <script dangerouslySetInnerHTML={{ __html: rastreio }} />
