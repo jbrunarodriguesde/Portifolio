@@ -1,273 +1,239 @@
-import { profile, hero, benefits, services, projects, heroProjects, proofStats, testimonials, steps, about, faq, nav, whatsapp } from './content';
-import { Icon, WhatsAppIcon } from './icons';
-import HeroShowcase from './hero-showcase';
-import Nav from './nav';
+import { profile, hero, benefits, services, projects, landingPages, proofStats, testimonials, steps, facts, skills, faq, whatsapp } from './content';
 import Motion from './motion';
+import Glass from './glass';
 import CopyEmail from './copy-email';
 
-function Ext({ href, className = '', children }: { href: string; className?: string; children: React.ReactNode }) {
-  return <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}<span className="sr-only"> (abre em nova aba)</span></a>;
+const Arrow = ({ diagonal = true }: { diagonal?: boolean }) => <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d={diagonal ? 'M5 19 19 5M5 5h14v14' : 'M4 12h16m-6-6 6 6-6 6'} /></svg>;
+const Wa = () => <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z" /></svg>;
+
+function Ext({ href, children, className = '', arrow = true }: { href: string; children: React.ReactNode; className?: string; arrow?: boolean }) {
+  return <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}{arrow && <Arrow />}<span className="sr-only"> (abre em nova aba)</span></a>;
 }
 
-function SectionHead({ pill, title, text, id }: { pill: string; title: string; text?: string; id: string }) {
-  return (
-    <div className="section-head" data-reveal>
-      <span className="pill">{pill}</span>
-      <h2 id={id}>{title}</h2>
-      {text && <p>{text}</p>}
-    </div>
-  );
-}
-
-/** Faixa de chamada para o WhatsApp, repetida entre as seções. */
-function CtaBand({ title, text, label, message }: { title: string; text: string; label: string; message: string }) {
-  return (
-    <div className="cta-band" data-reveal>
-      <div><h3>{title}</h3><p>{text}</p></div>
-      <Ext href={whatsapp(message)} className="btn btn-primary">{label} <Icon name="arrow" size={16} /></Ext>
-    </div>
-  );
+function Label({ n, children }: { n: string; children: React.ReactNode }) {
+  return <p className="label"><span className="label-n">{n} /</span> {children}</p>;
 }
 
 export default function Home() {
-  const vitrine = heroProjects.map(id => projects.find(p => p.id === id)!).filter(Boolean);
-  const ovo = projects.find(p => p.id === 'ovo')!;
+  const [ovo, find, brain] = projects;
+  const gallery = [
+    { p: ovo, img: '/projetos/ovodionca.webp', w: 799, h: 609, alt: 'Site oficial do Ovo di Onça com galinhas soltas ao fundo e o título Ovos caipiras fresquinhos, com sabor de verdade', tone: 'warm' },
+    { p: find, img: '/projetos/findofertas.webp', w: 1200, h: 833, alt: 'Tela de acesso do FindOfertas com login pelo Google ou por e-mail', tone: 'cool' },
+    { p: brain, img: '/projetos/second-brain.webp', w: 480, h: 360, alt: 'Tela de entrada do Second Brain com login pelo Google', tone: 'violet' },
+  ];
 
   return <>
+    <Glass />
     <Motion />
     <a href="#conteudo" className="skip-link">Pular para o conteúdo</a>
-    <Nav />
+
+    <header className="nav-wrap">
+      <nav className="nav liquid" data-glass="0.8" aria-label="Navegação principal">
+        <a className="signature" href="#inicio" aria-label="Bruna Rodrigues, início">br<span className="accent">.</span><span className="nav-name">Bruna Rodrigues</span></a>
+        <div className="nav-links"><a href="#servicos">Serviços</a><a href="#projetos">Projetos</a><a href="#processo">Processo</a><a href="#contato">Contato</a></div>
+        <Ext href={whatsapp('Olá, Bruna! Gostaria de pedir um orçamento.')} className="nav-cta">Pedir orçamento</Ext>
+      </nav>
+    </header>
 
     <main id="conteudo">
-      {/* 1. Promessa clara */}
-      <section id="inicio" className="hero band-soft" aria-labelledby="hero-title">
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <span className="pill"><i className="dot" /> {hero.badge}</span>
-            <h1 id="hero-title">{hero.title}</h1>
-            <p className="lead">{hero.subtitle}</p>
-            <div className="hero-actions">
-              <Ext href={whatsapp()} className="btn btn-primary btn-lg"><WhatsAppIcon /> Pedir orçamento no WhatsApp</Ext>
-              <a href="#projetos" className="btn btn-outline btn-lg">Ver projetos</a>
+      {/* Promessa clara + lente de vidro */}
+      <section className="hero" id="inicio" aria-labelledby="hero-title">
+        <div className="aurora" aria-hidden="true"><i /><i /><i /></div>
+        <div className="lens liquid" data-glass="1.6" aria-hidden="true" />
+        <div className="container hero-inner">
+          <p className="label hero-top"><span className="dot" /> {profile.role} · {profile.name}</p>
+          <h1 id="hero-title" className="hero-title">
+            <span className="hero-line"><span>Seu site,</span></span>
+            <span className="hero-line"><span>pronto para</span></span>
+            <span className="hero-line"><span className="serif accent">vender.</span></span>
+          </h1>
+          <div className="hero-bottom">
+            <div className="hero-meta">
+              <p className="hero-description">{hero.description}</p>
+              <div className="hero-actions">
+                <Ext href={whatsapp('Olá, Bruna! Gostaria de pedir um orçamento.')} className="button primary" arrow={false}><Wa /> Pedir orçamento no WhatsApp</Ext>
+                <a className="button glass-btn liquid" data-glass="1" href="#projetos">Ver projetos <Arrow diagonal={false} /></a>
+              </div>
+              <ul className="hero-checks">{hero.checks.map(c => <li key={c}><span className="dot" />{c}</li>)}</ul>
             </div>
-            <ul className="checks">
-              {hero.checks.map(c => <li key={c}><Icon name="check" size={16} />{c}</li>)}
-            </ul>
-          </div>
-          <HeroShowcase items={vitrine} />
-        </div>
-      </section>
-
-      {/* 2. Benefícios */}
-      <section id="beneficios" className="section band-white" aria-labelledby="t-beneficios">
-        <div className="container">
-          <SectionHead id="t-beneficios" pill="Benefícios" title={benefits.title} text={benefits.subtitle} />
-          <div className="grid grid-4">
-            {benefits.items.map(b => (
-              <article key={b.title} className="card" data-reveal>
-                <span className="icon-tile"><Icon name={b.icon} /></span>
-                <h3>{b.title}</h3><p>{b.text}</p>
-              </article>
-            ))}
-          </div>
-          <div className="note-band" data-reveal>
-            <span><Icon name="phone" size={18} /> Todos os projetos são pensados para celular e computador, com carregamento rápido.</span>
-            <Ext href={whatsapp()} className="text-link">Conversar agora <Icon name="arrow" size={15} /></Ext>
-          </div>
-        </div>
-      </section>
-
-      {/* Serviços */}
-      <section id="servicos" className="section band-soft" aria-labelledby="t-servicos">
-        <div className="container">
-          <SectionHead id="t-servicos" pill="Serviços" title="O que a Kroma pode criar para você" text="Soluções pensadas para valorizar o seu negócio e facilitar o contato com seus clientes." />
-          <div className="grid grid-2">
-            {services.map(s => (
-              <article key={s.title} className="card service-card" data-reveal>
-                <span className="icon-tile"><Icon name={s.icon} /></span>
-                <h3>{s.title}</h3><p>{s.text}</p>
-                <Ext href={whatsapp(`Olá, Bruna! Gostaria de um orçamento para ${s.title.toLowerCase()}.`)} className="service-link">
-                  Pedir orçamento para {s.title.toLowerCase()} <Icon name="arrow" size={16} />
-                </Ext>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Projetos (prova do trabalho) */}
-      <section id="projetos" className="section band-white" aria-labelledby="t-projetos">
-        <div className="container">
-          <SectionHead id="t-projetos" pill="Portfólio" title="Sites já desenvolvidos" text="Projetos publicados para apresentar serviços, gerar contatos e dar mais presença digital a cada negócio." />
-          <div className="grid grid-3">
-            {projects.map(p => (
-              <article key={p.id} className="card project-card" data-reveal>
-                <div className="project-thumb">
-                  <img src={p.image} alt={p.alt} width={800} height={600} loading="lazy" decoding="async" />
-                  <span className="pill pill-white">{p.tag}</span>
-                </div>
-                <div className="project-body">
-                  <h3>{p.name}</h3>
-                  <p>{p.description}</p>
-                  <ul className="tech" aria-label="Tecnologias">{p.tech.map(t => <li key={t}>{t}</li>)}</ul>
-                  <div className="project-foot">
-                    {p.extra ? <Ext href={p.extra.url} className="text-link">{p.extra.label}</Ext> : <span>{p.urlLabel}</span>}
-                    <Ext href={p.url} className="btn btn-primary btn-sm">Acessar projeto <Icon name="external" size={14} /></Ext>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-          <CtaBand title="Gostou dos projetos?" text="Posso criar uma estrutura sob medida para o seu segmento e o seu momento." label="Pedir orçamento" message="Olá, Bruna! Vi seus projetos e gostaria de um orçamento." />
-        </div>
-      </section>
-
-      {/* 4. Provas sociais */}
-      <section id="depoimentos" className="section band-ink" aria-labelledby="t-provas">
-        <div className="container">
-          <SectionHead id="t-provas" pill="Resultados reais" title="Negócios que já estão no ar com a Kroma" text="Cada número abaixo vem dos projetos publicados, que você pode abrir agora mesmo." />
-          <dl className="stats" data-reveal>
-            {proofStats.map(s => <div key={s.label}><dt>{s.label}</dt><dd>{s.value}</dd></div>)}
-          </dl>
-          {testimonials.length > 0 ? (
-            <div className="grid grid-3 testimonials">
-              {testimonials.map(t => (
-                <figure key={t.name} className="quote-card" data-reveal>
-                  <Icon name="quote" size={26} />
-                  <blockquote>{t.quote}</blockquote>
-                  <figcaption><b>{t.name}</b><span>{t.role}</span></figcaption>
-                </figure>
-              ))}
+            <div className="hero-shots" aria-hidden="true">
+              <figure className="shot shot-a"><img src="/projetos/barbearia.webp" alt="" width={799} height={609} /></figure>
+              <figure className="shot shot-b"><img src="/projetos/buffet-infantil.webp" alt="" width={800} height={600} /></figure>
+              <figure className="shot shot-c"><img src="/projetos/ovodionca.webp" alt="" width={799} height={609} fetchPriority="high" /></figure>
             </div>
-          ) : (
-            <article className="case" data-reveal>
-              <img src={ovo.image} alt={ovo.alt} width={800} height={600} loading="lazy" />
-              <div>
-                <span className="pill pill-dark">Caso em produção</span>
-                <h3>Ovo di Onça</h3>
-                <p>Um clube de assinatura de ovos caipiras de Onça de Pitangui, MG, que vende para BH e região. O site oficial apresenta a história da marca, os planos e a assinatura pelo WhatsApp, e ganhou uma página de receitas com busca e filtros.</p>
-                <div className="case-links">
-                  <Ext href={ovo.url} className="btn btn-primary btn-sm">Ver o site no ar <Icon name="external" size={14} /></Ext>
-                  {ovo.extra && <Ext href={ovo.extra.url} className="text-link text-link-light">{ovo.extra.label}</Ext>}
-                </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Letreiro de serviços */}
+      <div className="marquee" aria-label="Serviços: landing pages, sites institucionais, redesign e sistemas web">
+        <div className="marquee-track" aria-hidden="true">
+          {[0, 1].map(k => <span key={k}>{services.map(s => <span key={s.title + k}>{s.title}<i className="serif accent"> ✦ </i></span>)}<span>WhatsApp em um clique<i className="serif accent"> ✦ </i></span></span>)}
+        </div>
+      </div>
+
+      {/* 01 Benefícios + serviços */}
+      <section className="container section" id="servicos" aria-labelledby="t-servicos">
+        <div className="split">
+          <div className="split-side">
+            <Label n="01">SERVIÇOS</Label>
+            <h2 id="t-servicos" className="h2">O que um bom site<br /><span className="muted">faz pelo seu negócio.</span></h2>
+          </div>
+          <ol className="benefits">
+            {benefits.map((b, i) => <li key={b.title} className="benefit"><span className="mono">0{i + 1}</span><div><h3>{b.title}<span className="serif accent">.</span></h3><p>{b.text}</p></div></li>)}
+          </ol>
+        </div>
+        <div className="services">
+          {services.map(s => (
+            <article key={s.title} className="service" data-reveal>
+              <span className="chip">{s.ideal}</span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+              <Ext href={whatsapp(`Olá, Bruna! Gostaria de um orçamento para ${s.title.toLowerCase()}.`)} className="text-link">Pedir orçamento</Ext>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* 02 Galeria horizontal de projetos */}
+      <section className="h-gallery" id="projetos" aria-labelledby="t-projetos">
+        <div className="h-track">
+          <div className="h-intro">
+            <Label n="02">PROJETOS</Label>
+            <h2 id="t-projetos" className="h2">Sites no ar.<br /><span className="muted">Possibilidades reais.</span></h2>
+            <p className="muted-p">Role para o lado e abra cada um. Tudo o que está aqui foi publicado.</p>
+            <span className="scroll-hint mono" aria-hidden="true">ROLE PARA EXPLORAR →</span>
+          </div>
+          {gallery.map(({ p, img, w, h, alt, tone }) => (
+            <article key={p.id} className={`h-card tone-${tone}`}>
+              <div className="h-shot">
+                <div className="h-bar frost"><span className="dots"><i /><i /><i /></span><span>{p.demoLabel}</span></div>
+                <img src={img} alt={alt} width={w} height={h} loading="lazy" decoding="async" />
+              </div>
+              <div className="h-info">
+                <div className="kicker mono"><span>{p.number} / {p.category}</span><span className="status">{p.status}</span></div>
+                <h3>{p.name}</h3>
+                <p className="headline">{p.headline}</p>
+                <p className="desc">{p.description}</p>
+                <details className="details"><summary>O problema e a construção <span aria-hidden="true">+</span></summary><div><p>{p.problem}</p><ul>{p.features.map(f => <li key={f}>{f}</li>)}</ul><p className="note">{p.note}</p></div></details>
+                <ul className="tags">{p.technologies.map(t => <li key={t}>{t}</li>)}</ul>
+                <div className="links"><Ext href={p.demo}>Ver site</Ext>{p.extra?.map(l => <Ext key={l.href} href={l.href}>{l.label}</Ext>)}</div>
               </div>
             </article>
+          ))}
+        </div>
+      </section>
+
+      {/* 03 Grade 3D das landing pages */}
+      <section className="container section grid3d-wrap" aria-labelledby="t-lp">
+        <div className="section-head" data-reveal>
+          <div><Label n="03">LANDING PAGES</Label><h2 id="t-lp" className="h2">Leves, rápidas<br /><span className="muted">e feitas para gerar contato.</span></h2></div>
+          <p className="muted-p">{projects[3].description}</p>
+        </div>
+        <div className="grid3d-stage">
+          <ul className="grid3d">
+            {landingPages.map(l => (
+              <li key={l.name} className="tile">
+                <Ext href={l.demo} className="tile-link" arrow={false}>
+                  <img src={l.image} alt={l.alt} width={800} height={600} loading="lazy" />
+                  <span className="tile-label frost"><b>{l.name}</b><span>Ver site <Arrow /></span></span>
+                </Ext>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 04 Resultados (provas sociais) */}
+      <section className="proof" aria-labelledby="t-proof">
+        <div className="container">
+          <div className="section-head" data-reveal>
+            <div><Label n="04">RESULTADOS</Label><h2 id="t-proof" className="h2">Trabalho que<br /><span className="muted">já está no ar.</span></h2></div>
+            <p className="muted-p">Números contados a partir dos projetos publicados.</p>
+          </div>
+          <dl className="stats">
+            {proofStats.map(s => <div key={s.label}><dd data-count={s.value}>{s.value}</dd><dt>{s.label}</dt></div>)}
+          </dl>
+          {testimonials.length > 0 && (
+            <div className="quotes">{testimonials.map(t => (
+              <figure key={t.name} className="quote liquid-card" data-reveal><blockquote><span className="serif accent">“</span>{t.quote}</blockquote><figcaption><b>{t.name}</b> · {t.role}</figcaption></figure>
+            ))}</div>
           )}
         </div>
       </section>
 
-      {/* Etapas */}
-      <section id="processo" className="section band-soft" aria-labelledby="t-processo">
-        <div className="container">
-          <SectionHead id="t-processo" pill="Passo a passo" title="Como funciona" text="Um processo direto e sem complicação para tirar sua ideia do papel com qualidade." />
-          <ol className="grid grid-4 steps">
-            {steps.map((s, i) => (
-              <li key={s.title} className="card step" data-reveal>
-                <div className="step-top"><span className="icon-tile"><Icon name={s.icon} /></span><span className="step-num">0{i + 1}</span></div>
-                <h3>{s.title}</h3>
-                <p className="step-lead">{s.lead}</p>
-                <p>{s.text}</p>
-                <span className="step-foot">Etapa {i + 1} de {steps.length}</span>
-              </li>
-            ))}
-          </ol>
-          <CtaBand title="Pronto para dar o primeiro passo?" text="Converse direto no WhatsApp para tirar dúvidas e receber um direcionamento para o seu caso." label="Falar no WhatsApp" message="Olá, Bruna! Quero dar o primeiro passo no meu site." />
+      {/* 05 Como funciona */}
+      <section className="container section" id="processo" aria-labelledby="t-proc">
+        <div className="split">
+          <div className="split-side sticky">
+            <Label n="05">COMO FUNCIONA</Label>
+            <h2 id="t-proc" className="h2">Do primeiro contato<br /><span className="serif accent">ao site no ar.</span></h2>
+            <Ext href={whatsapp('Olá, Bruna! Quero começar pela conversa inicial.')} className="button primary">Começar pela conversa</Ext>
+          </div>
+          <div className="steps">
+            <div className="steps-progress" aria-hidden="true"><span /></div>
+            <ol>{steps.map((s, i) => <li key={s.title} className="step"><span className="mono">0{i + 1}</span><div><h3>{s.title}</h3><p>{s.text}</p></div></li>)}</ol>
+          </div>
         </div>
       </section>
 
-      {/* Quem faz */}
-      <section id="sobre" className="section band-white" aria-labelledby="t-sobre">
+      {/* 06 Sobre + ferramentas */}
+      <section className="about" id="sobre" aria-labelledby="t-sobre">
         <div className="container about-grid">
           <div data-reveal>
-            <span className="pill">Sobre</span>
-            <h2 id="t-sobre">{about.title}</h2>
-            {about.paragraphs.map(p => <p key={p.slice(0, 20)} className="about-text">{p}</p>)}
-            <dl className="facts">
-              {about.facts.map(f => <div key={f.term}><dt>{f.term}</dt><dd>{f.value}</dd></div>)}
-            </dl>
-            <Ext href={profile.linkedin} className="text-link">Ver meu LinkedIn <Icon name="external" size={14} /></Ext>
+            <Label n="06">SOBRE MIM</Label>
+            <h2 id="t-sobre" className="h2">O contexto vem<br /><span className="serif accent">antes do código.</span></h2>
+            <p className="lead">Sou Bruna Rodrigues de Jesus, desenvolvedora full stack.</p>
+            <p className="muted-p">Sou técnica em Informática pela UFV Campus Florestal. No TCC criei o Educash, uma plataforma web de educação financeira para crianças, e foi ali que gostei de levar uma ideia do rascunho até algo que as pessoas usam.</p>
+            <p className="muted-p">Hoje cuido de cada projeto de ponta a ponta: do visual da página até o banco de dados que guarda as regras do negócio.</p>
+            <dl className="facts">{facts.map(f => <div key={f.term}><dt>{f.term}</dt><dd>{f.value}</dd></div>)}</dl>
+            <Ext className="text-link" href={profile.linkedin}>Vamos nos conectar no LinkedIn</Ext>
           </div>
-          <div className="skills" data-reveal>
-            {about.skills.map(g => (
-              <div key={g.group} className="card skill-card">
-                <h3>{g.group}</h3>
-                <ul>{g.items.map(i => <li key={i}>{i}</li>)}</ul>
-              </div>
+          <div className="skills">
+            {skills.map(s => (
+              <article key={s.number} className="liquid-card skill" data-reveal>
+                <span className="mono">{'{ '}{s.number}{' }'}</span>
+                <h3>{s.title}</h3>
+                <ul>{s.items.map(x => <li key={x}>{x}</li>)}</ul>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Dúvidas */}
-      <section id="faq" className="section band-soft" aria-labelledby="t-faq">
-        <div className="container faq-wrap">
-          <SectionHead id="t-faq" pill="Dúvidas comuns" title="Tire suas dúvidas antes de começar" />
-          <div className="faq" data-reveal>
-            {faq.map((f, i) => (
-              <details key={f.q} open={i === 0}>
-                <summary>{f.q}<Icon name="plus" size={18} /></summary>
-                <p>{f.a}</p>
-              </details>
-            ))}
-          </div>
+      {/* 07 Dúvidas */}
+      <section className="container section" id="duvidas" aria-labelledby="t-faq">
+        <div className="split">
+          <div className="split-side"><Label n="07">DÚVIDAS</Label><h2 id="t-faq" className="h2">Antes de começar,<br /><span className="muted">o que mais perguntam.</span></h2></div>
+          <div className="faq">{faq.map((f, i) => <details key={f.q} className="details" open={i === 0}><summary>{f.q} <span aria-hidden="true">+</span></summary><div><p>{f.a}</p></div></details>)}</div>
         </div>
       </section>
 
-      {/* CTA final + contato */}
-      <section id="contato" className="section band-white" aria-labelledby="t-contato">
+      {/* Contato */}
+      <section className="contact" id="contato" aria-labelledby="t-contato">
+        <div className="aurora aurora-low" aria-hidden="true"><i /><i /><i /></div>
         <div className="container">
-          <div className="contact-card" data-reveal>
-            <span className="pill">Contato</span>
-            <h2 id="t-contato">Vamos conversar sobre o seu site?</h2>
-            <p className="lead">Conte um pouco sobre o seu negócio. Respondo com perguntas sobre o que você precisa e uma proposta sem compromisso.</p>
-            <ul className="checks">
-              <li><Icon name="check" size={16} />Resposta ágil</li>
-              <li><Icon name="check" size={16} />Proposta sem compromisso</li>
-              <li><Icon name="check" size={16} />Atendimento online em todo o Brasil</li>
-            </ul>
+          <div className="contact-card liquid-card" data-reveal>
+            <p className="label"><span className="dot" /> VAMOS CONVERSAR</p>
+            <h2 id="t-contato" className="contact-title">Seu próximo cliente<br />pode chegar <span className="serif accent">por aqui.</span></h2>
+            <p className="muted-p">Conte sobre o seu negócio. Respondo com perguntas sobre o que você precisa e uma proposta sem compromisso.</p>
             <div className="contact-actions">
-              <Ext href={whatsapp()} className="btn btn-primary btn-lg"><WhatsAppIcon /> Chamar no WhatsApp</Ext>
-              <CopyEmail email={profile.email} className="btn btn-outline btn-lg copy-email" />
+              <Ext href={whatsapp()} className="button primary" arrow={false}><Wa /> Chamar no WhatsApp</Ext>
+              <CopyEmail email={profile.email} className="button glass-btn liquid copy-email" />
             </div>
-            <ul className="channels">
-              <li><Ext href={whatsapp()} className="channel"><span className="icon-tile"><Icon name="chat" /></span><span><small>WhatsApp</small><b>{profile.whatsappDisplay}</b></span></Ext></li>
-              <li><div className="channel"><span className="icon-tile"><Icon name="mail" /></span><span><small>E-mail</small><b id="email-contato">{profile.email}</b></span></div></li>
-              <li><Ext href={profile.instagram.url} className="channel"><span className="icon-tile"><Icon name="instagram" /></span><span><small>Instagram</small><b>{profile.instagram.handle}</b></span></Ext></li>
-              <li><Ext href={profile.linkedin} className="channel"><span className="icon-tile"><Icon name="linkedin" /></span><span><small>LinkedIn</small><b>brunarodrigues08</b></span></Ext></li>
-            </ul>
+            <div className="contact-links">
+              <span id="email-contato" className="contact-email">{profile.email}</span>
+              <Ext href={whatsapp()}>WhatsApp {profile.whatsappDisplay}</Ext>
+              <Ext href={profile.linkedin}>LinkedIn</Ext>
+              <Ext href={profile.github}>GitHub</Ext>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer className="site-footer">
-      <div className="container footer-grid">
-        <div>
-          <a href="#inicio" className="brand"><img src="/kroma-logo.png" width={40} height={40} alt="" /><span><b>{profile.companyShort}</b><small>{profile.tagline}</small></span></a>
-          <p className="footer-name">{profile.company}</p>
-          <p>Sites, landing pages e sistemas web para negócios que querem crescer. Por {profile.name}.</p>
-        </div>
-        <nav aria-label="Rodapé">
-          <h2>Navegação</h2>
-          <ul>{nav.map(n => <li key={n.href}><a href={n.href}>{n.label}</a></li>)}</ul>
-        </nav>
-        <div>
-          <h2>Canais oficiais</h2>
-          <div className="footer-icons">
-            <Ext href={whatsapp()} className="icon-btn"><Icon name="chat" /><span className="sr-only">WhatsApp</span></Ext>
-            <Ext href={profile.instagram.url} className="icon-btn"><Icon name="instagram" /><span className="sr-only">Instagram</span></Ext>
-            <Ext href={profile.linkedin} className="icon-btn"><Icon name="linkedin" /><span className="sr-only">LinkedIn</span></Ext>
-          </div>
-          <p>{profile.hours}</p>
-        </div>
-      </div>
-      <div className="container footer-bottom">
-        <span>© {new Date().getFullYear()} {profile.company}. Todos os direitos reservados.</span>
-        <span>{profile.location}</span>
-      </div>
-    </footer>
+    <footer className="container footer"><a className="signature" href="#inicio" aria-label="Bruna Rodrigues, voltar ao início">br<span className="accent">.</span></a><p>© {new Date().getFullYear()} {profile.name} · {profile.location}</p><a href="#inicio">Voltar ao topo ↑</a></footer>
 
-    <a href="#inicio" className="to-top" aria-label="Voltar ao topo"><Icon name="up" /></a>
-    <Ext href={whatsapp()} className="wa-float"><WhatsAppIcon size={20} /> Falar no WhatsApp</Ext>
+    <a href={whatsapp()} target="_blank" rel="noopener noreferrer" className="wa-float liquid" data-glass="1"><Wa /><span className="wa-label">Falar no WhatsApp</span><span className="sr-only"> (abre em nova aba)</span></a>
   </>;
 }

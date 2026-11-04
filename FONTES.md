@@ -46,9 +46,10 @@ E-mail e ambos os perfis GitHub: fornecidos pela titular. LinkedIn foi mantido c
 Em app/content.ts, profile.availability está vazio para edição. Formação e TCC vêm de informações da titular.
 
 
-## Versão no estilo Kroma (04/11/2026)
-- Design e organização baseados no site da Kroma (https://kromasisweb.vercel.app), da própria titular: cores, tipografia, ordem das seções, textos de serviços, processo e dúvidas frequentes (adaptados).
-- Logo: capturado do site da Kroma.
-- Capturas reais (04/11/2026): kromasisweb.vercel.app, l-podontologia-prof.vercel.app, l-podontologia.vercel.app, l-pbuffet-infantil.vercel.app, second-brain-lovat-psi.vercel.app, além de ovodionca.com.br, find-ofertas e l-pbarbearia.
-- Fora do site: Corretora de Imóveis e Lorena Buffet (decisão da titular); varodrigues.vercel.app (404 em 04/11/2026); trabalho-maf-213-7460-7461.vercel.app (não abriu na verificação); ovo-di-onca0826.vercel.app (versão antiga do site oficial).
+## Versão atual (04/11/2026)
+- Design do portfólio original (vidro, tipografia grande, detalhes em serifa) com nova paleta água-marinha/petróleo.
+- Sem menção à Kroma, por decisão da titular.
+- Textos de serviços, etapas e dúvidas: escritos com base nas informações da titular (prazo médio de landing page de 7 a 15 dias úteis).
+- Capturas reais (04/11/2026): ovodionca.com.br, find-ofertas, second-brain-lovat-psi, l-pbarbearia, l-pbuffet-infantil, l-podontologia-prof e l-podontologia (.vercel.app).
+- Fora do site: Corretora de Imóveis e Lorena Buffet (decisão da titular); varodrigues.vercel.app (404 em 04/11/2026); trabalho-maf-213-7460-7461 (não abriu); ovo-di-onca0826 (versão antiga do site oficial).
 - Provas sociais: apenas números contados dos projetos publicados. Nenhum depoimento foi inventado; a lista `testimonials` está vazia até a titular incluir depoimentos reais.
