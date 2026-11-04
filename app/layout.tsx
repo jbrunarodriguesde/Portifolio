@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import { ADS_ID, CONVERSION_LABEL } from './ads';
 
 // Troque pelo endereço final do site (usado nas prévias de compartilhamento).
 const origin = 'https://portifolio-tan-delta.vercel.app';
@@ -20,5 +21,27 @@ export const viewport: Viewport = {
   ],
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="pt-BR"><body>{children}</body></html>;
+  // Cada clique em um link do WhatsApp (botões, pedido guiado, botão flutuante) conta como contato.
+  const rastreio = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${ADS_ID}');
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest && e.target.closest('a[href*="wa.me/"]');
+      if (!a) return;
+      ${CONVERSION_LABEL ? `gtag('event', 'conversion', { send_to: '${ADS_ID}/${CONVERSION_LABEL}' });` : ''}
+      gtag('event', 'contato_whatsapp', { link_url: a.href.split('?')[0] });
+    }, true);
+  `;
+  return (
+    <html lang="pt-BR">
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`} />
+        <script dangerouslySetInnerHTML={{ __html: rastreio }} />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
 }
