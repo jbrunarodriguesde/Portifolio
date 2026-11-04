@@ -1,32 +1,28 @@
-# Portfólio — Bruna Rodrigues de Jesus
+# Kroma Sistemas e Desenvolvimento Web — site e portfólio
 
-Página em português brasileiro com Next.js, TypeScript e Tailwind CSS. Exportação estática, sem formulário ou dependência de serviços para renderizar o conteúdo.
+Página de vendas de serviços da Kroma, com o portfólio de Bruna Rodrigues de Jesus.
+Next.js + TypeScript, exportado como site estático (pasta `out/`).
+
+## Organização (inspirada em kromasisweb.vercel.app)
+1. **Início**: promessa clara, botão de orçamento no WhatsApp e vitrine com abas de projetos reais.
+2. **Benefícios**: o que um bom site faz pelo negócio.
+3. **Serviços**: landing pages, sites institucionais, redesign e sistemas web, cada um com seu botão de orçamento.
+4. **Projetos**: sites publicados, com captura real e link "Acessar projeto".
+5. **Resultados reais**: números tirados dos projetos e o caso Ovo di Onça. Vira grade de depoimentos quando houver depoimentos.
+6. **Como funciona**: as 4 etapas do serviço.
+7. **Sobre**: quem faz, formação e ferramentas.
+8. **Dúvidas** e **Contato**, com WhatsApp, e-mail, Instagram e LinkedIn.
+
+Botão flutuante de WhatsApp em todas as telas. Modo claro ou escuro automático, conforme o sistema de quem visita.
 
 ## Atualizar
-- Textos, tecnologias, links e canais: app/content.ts.
-- Composição e seções: app/page.tsx.
-- Identidade visual e responsividade: app/globals.css.
-- Título, descrição e compartilhamento: app/layout.tsx.
-- Fotos, capturas, fonte local e imagem social: public/.
-- Origem e limites das informações: FONTES.md.
+- Todo o conteúdo: `app/content.ts` (textos, projetos, número do WhatsApp, FAQ).
+- **Depoimentos**: preencha a lista `testimonials` em `app/content.ts` com depoimentos reais e autorizados.
+- Imagens dos projetos: `public/projetos/`. Logo: `public/kroma-logo.png`. Imagem de compartilhamento: `public/og.png`.
+- Visual: `app/globals.css` (cores no topo, em `:root`).
+- Título e descrição para Google e WhatsApp: `app/layout.tsx` (troque `origin` pelo endereço final do site).
 
-Campo opcional: availability (em app/content.ts). Formação aparece na seção Sobre a partir de `facts`. Preencha somente com informações confirmadas. Para incluir currículo, adicione o arquivo e um link real; nenhum botão fictício foi incluído.
-
-## Executar
-Requer Node.js 20.9 ou superior.
-
+## Rodar
     npm ci
     npm run dev
-
-Endereço local: http://127.0.0.1:3027
-
-    npm run typecheck
     npm run build
-
-A pasta out/ contém o site estático pronto para hospedagem. Não abra index.html diretamente: sirva out/ por HTTP para que fontes, imagens e scripts tenham os endereços corretos.
-
-## Decisões
-Fundo grafite e verde-lima, tipografia Manrope hospedada localmente e detalhes em serifada do sistema. Vidro na navegação e no elemento flutuante, com alternativa opaca sem suporte a desfoque. Animações usam CSS e a API nativa do navegador; conteúdo continua acessível sem JavaScript e respeita redução de movimento.
-
-## Publicação e acesso
-A publicação inicial no Sites é privada para revisão. A audiência não é alterada automaticamente para pública. Para compartilhar com recrutadores sem login, configure o acesso público quando desejar.

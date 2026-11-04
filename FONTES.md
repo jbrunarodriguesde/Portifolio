@@ -44,3 +44,11 @@ E-mail e ambos os perfis GitHub: fornecidos pela titular. LinkedIn foi mantido c
 
 ## Campos opcionais
 Em app/content.ts, profile.availability está vazio para edição. Formação e TCC vêm de informações da titular.
+
+
+## Versão no estilo Kroma (04/11/2026)
+- Design e organização baseados no site da Kroma (https://kromasisweb.vercel.app), da própria titular: cores, tipografia, ordem das seções, textos de serviços, processo e dúvidas frequentes (adaptados).
+- Logo: capturado do site da Kroma.
+- Capturas reais (04/11/2026): kromasisweb.vercel.app, l-podontologia-prof.vercel.app, l-podontologia.vercel.app, l-pbuffet-infantil.vercel.app, second-brain-lovat-psi.vercel.app, além de ovodionca.com.br, find-ofertas e l-pbarbearia.
+- Fora do site: Corretora de Imóveis e Lorena Buffet (decisão da titular); varodrigues.vercel.app (404 em 04/11/2026); trabalho-maf-213-7460-7461.vercel.app (não abriu na verificação); ovo-di-onca0826.vercel.app (versão antiga do site oficial).
+- Provas sociais: apenas números contados dos projetos publicados. Nenhum depoimento foi inventado; a lista `testimonials` está vazia até a titular incluir depoimentos reais.

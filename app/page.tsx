@@ -1,30 +1,273 @@
-import { profile, projects, skills, landingPages, facts } from './content';
+import { profile, hero, benefits, services, projects, heroProjects, proofStats, testimonials, steps, about, faq, nav, whatsapp } from './content';
+import { Icon, WhatsAppIcon } from './icons';
+import HeroShowcase from './hero-showcase';
+import Nav from './nav';
 import Motion from './motion';
 import CopyEmail from './copy-email';
-const Arrow = ({ diagonal = true }: { diagonal?: boolean }) => <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d={diagonal ? 'M5 19 19 5M5 5h14v14' : 'M4 12h16m-6-6 6 6-6 6'} /></svg>;
-function External({ href, children, className = '' }: { href: string; children: React.ReactNode; className?: string }) { return <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}<Arrow /><span className="sr-only"> (abre em nova aba)</span></a>; }
-function Tags({ items }: { items: string[] }) { return <ul className="tags" aria-label="Tecnologias utilizadas">{items.map(x => <li key={x}>{x}</li>)}</ul>; }
-function Diagram({ compact = false }: { compact?: boolean }) { return <div className={`architecture ${compact ? 'compact' : ''}`} role="img" aria-label="Diagrama ilustrativo do sistema: site público e área do assinante conectados ao painel de gestão e ao PostgreSQL, com autenticação Better Auth."><div className="diagram-label"><span className="status-dot" /> OVO DI ONÇA <span>ECOSSISTEMA DIGITAL</span></div><div className="diagram-grid"><div className="diagram-node"><span className="node-icon">◉</span><span>Site público<small>Planos & descoberta</small></span></div><div className="diagram-node"><span className="node-icon">⌘</span><span>Área do assinante<small>Conta & acompanhamento</small></span></div></div><div className="connector" /><div className="diagram-node central"><span className="node-icon">▤</span><span>Painel de gestão<small>Clientes · assinaturas · entregas · faturas</small></span><span className="node-pill">Next.js</span></div><div className="connector" /><div className="diagram-bottom"><span>◎ PostgreSQL<small>Dados & políticas de acesso</small></span><span>⌁ Better Auth<small>Autenticação</small></span></div><p className="diagram-caption">DIAGRAMA ILUSTRATIVO · BASEADO NO CÓDIGO</p></div>; }
-function ProjectInfo({ index }: { index: number }) { const p = projects[index]; return <><div className="project-kicker"><span>{p.number} / {p.category}</span><span className="project-status">{p.status}</span></div><h3>{p.name}</h3><p className="project-headline">{p.headline}</p><p className="project-description">{p.description}</p><details className="project-details"><summary>O problema e a construção <span aria-hidden="true">+</span></summary><div><p>{p.problem}</p><ul>{p.features.map(x => <li key={x}>{x}</li>)}</ul><p className="small-note">{p.note}</p></div></details><Tags items={p.technologies} />{(p.demo || p.extra?.length) ? <div className="project-links">{p.demo && <External href={p.demo}>Ver site</External>}{p.extra?.map(l => <External key={l.href} href={l.href}>{l.label}</External>)}</div> : null}</>; }
-export default function Home() { return <>
-  <Motion /><a href="#conteudo" className="skip-link">Pular para o conteúdo</a>
-  <header className="nav-wrap"><nav className="nav glass" aria-label="Navegação principal"><a className="signature" href="#inicio" aria-label="Bruna Rodrigues, início">br<span className="accent">.</span><span className="nav-name">Bruna Rodrigues</span></a><div className="nav-links"><a href="#projetos">Projetos</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a></div><a className="nav-cta" href={profile.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Vamos conversar pelo WhatsApp (abre em nova aba)">Vamos conversar <Arrow /></a></nav></header>
-  <main id="conteudo">
-    <section className="hero container" id="inicio" aria-labelledby="hero-title"><div className="hero-copy"><p className="eyebrow hero-enter"><span className="status-dot" /> {profile.role}</p><p className="hero-name hero-enter">{profile.name}<span className="hero-company">{profile.company}</span></p><h1 id="hero-title" className="hero-enter">Ideias ganham<br />forma.<br /><span className="serif accent">E código.</span></h1><p className="hero-description hero-enter">Construo interfaces e aplicações que conectam a experiência de quem usa às regras de quem opera.</p><div className="hero-actions hero-enter"><a className="button primary" href="#projetos">Ver projetos <Arrow diagonal={false} /></a><a className="button quiet" href="#contato">Entrar em contato <Arrow /></a></div></div>
-      <div className="hero-art"><div className="ambient-orb" aria-hidden="true" /><div className="art-coordinate" aria-hidden="true">INTERFACE / LÓGICA / CONTEXTO</div><div className="hero-browser"><div className="browser-toolbar"><span className="browser-dots" aria-hidden="true"><i /><i /><i /></span><span>projetos / bruna.rodrigues</span><span aria-hidden="true">↗</span></div><img src="/ovodionca.webp" width="799" height="609" alt="Captura real do site oficial Ovo di Onça, com galinhas soltas ao fundo e o título Ovos caipiras fresquinhos, com sabor de verdade" fetchPriority="high" /></div><div className="hero-terminal glass"><div><span className="status-dot" /> desenvolvimento.fullstack</div><p><span>const</span> experiência = {'{'}<br /><span className="code-indent">interface: <b>'clara'</b>,</span><br /><span className="code-indent">dados: <b>'com contexto'</b></span><br />{'}'};</p><small>Uma composição visual sobre o trabalho.</small></div><div className="art-caption"><span className="tiny-line" /> Interface real · Ovo di Onça</div></div>
-      <div className="hero-bottom"><span>DO PRIMEIRO PIXEL À REGRA DE NEGÓCIO</span><a href="#projetos">Explore o trabalho <span aria-hidden="true">↓</span></a><span className="hero-index">PORTFÓLIO / 2026</span></div>
-    </section>
-    <div className="tech-strip"><div className="container flex flex-wrap items-center justify-between gap-6"><span className="eyebrow">TECNOLOGIAS EM CONTEXTO</span><span>Next.js</span><span>React</span><span>TypeScript</span><span>PostgreSQL</span><span>Tailwind CSS</span></div></div>
-    <section className="container section" id="projetos" aria-labelledby="projects-title"><div className="section-heading" data-reveal><div><p className="eyebrow"><span className="section-number">01 /</span> PROJETOS SELECIONADOS</p><h2 id="projects-title">Sites no ar.<br /><span className="muted">Possibilidades reais.</span></h2></div><p>Um recorte do que construo:<br />produtos digitais, sistemas e presença na web.</p></div>
-      <article className="featured-project" data-reveal><div className="featured-visual"><div className="visual-topline"><span>PROJETO EM FOCO</span><span>FULL STACK ↗</span></div><Diagram /><a className="reference-link" href="/gestao-reference.webp" target="_blank" rel="noopener noreferrer">Ver referência de design do repositório <Arrow /><span className="sr-only"> (abre em nova aba)</span></a></div><div className="featured-copy"><ProjectInfo index={0} /></div></article>
-      <div className="project-grid"><article className="project-card" data-reveal><div className="project-preview find-preview"><div className="visual-topline"><span>COMPARAÇÃO & DESCOBERTA</span><span>02 ↗</span></div><div className="preview-browser"><div className="preview-address">find-ofertas.vercel.app</div><img src="/findofertas.webp" width="1200" height="833" loading="lazy" alt="Captura real da demonstração do FindOfertas, que utiliza dados demonstrativos" /></div><p className="preview-caption">CAPTURA REAL · TELA PÚBLICA DE LOGIN</p></div><div className="card-copy"><ProjectInfo index={1} /></div></article>
-      <article className="project-card offset-project" data-reveal><div className="project-preview service-preview"><div className="visual-topline"><span>SERVIÇOS & ORÇAMENTO</span><span>03 ↗</span></div><ul className="service-list" aria-label="Serviços apresentados no site"><li>Iluminação pública</li><li>Equipamentos elétricos</li><li>Automação</li><li>Mini escavadeira</li><li>Poda de árvores</li><li>Cesto elétrico</li></ul><p className="preview-caption">PRÉVIA ILUSTRATIVA · SITE EM PUBLICAÇÃO</p></div><div className="card-copy"><ProjectInfo index={2} /></div></article></div>
-      <article className="wide-project" data-reveal><div className="project-preview local-preview"><div className="visual-topline"><span>NEGÓCIOS LOCAIS</span><span>04 ↗</span></div><div className="preview-browser"><div className="preview-address">l-pbarbearia.vercel.app</div><img src="/landing-barbearia.webp" width="799" height="609" loading="lazy" alt="Captura real da landing page de barbearia, em preto e dourado" /></div><ul className="local-list" aria-label="Páginas da série">{landingPages.map(l => <li key={l.name}><span>{l.name}</span><span><a href={l.demo} target="_blank" rel="noopener noreferrer">Ver site<span className="sr-only"> de {l.name} (abre em nova aba)</span></a></span></li>)}</ul></div><div className="wide-copy"><ProjectInfo index={3} /></div></article>
-      <details className="sources"><summary>Um portfólio com fontes à vista <span aria-hidden="true">+</span></summary><div><p>Seleção baseada nos repositórios públicos dos dois perfis, consultados em 03/11/2026. Cada projeto publicado tem um link para o site. Descrições refletem os arquivos analisados, sem afirmar resultados comerciais ou atribuir clientes.</p><p>O README de sitegestao descreve uma etapa anterior ao código atual. A seleção considera também páginas, autenticação e migrations. A imagem de design desse repositório é uma referência, com dados ilustrativos, e não uma captura do sistema em produção. FindOfertas utiliza catálogo mockado. As landing pages são modelos com dados de exemplo.</p><div className="source-links"><External href={profile.github}>GitHub pessoal</External><External href={profile.githubBusiness}>GitHub Ovo di Onça</External></div></div></details>
-    </section>
-    <section className="about-section" id="sobre" aria-labelledby="about-title"><div className="container about-grid"><div data-reveal><p className="eyebrow"><span className="section-number">02 /</span> SOBRE MIM</p><h2 id="about-title">O contexto vem<br /><span className="serif accent">antes do código.</span></h2><p className="about-lead">Sou Bruna Rodrigues de Jesus,<br />desenvolvedora full stack à frente da {profile.company}.</p><p>Sou técnica em Informática pela UFV Campus Florestal. No TCC criei o Educash, uma plataforma web de educação financeira para crianças, e foi ali que gostei de levar uma ideia do rascunho até algo que as pessoas usam.</p><p>Hoje meus projetos passam por contextos diferentes: assinaturas, comparação de ofertas, serviços e negócios locais. O ponto em comum é transformar informações e regras em interfaces que possam ser exploradas, do React no navegador às políticas de acesso no PostgreSQL.</p><dl className="about-facts">{facts.map(f => <div key={f.term}><dt>{f.term}</dt><dd>{f.value}</dd></div>)}{profile.location && <div><dt>Onde estou</dt><dd>{profile.location}</dd></div>}{profile.availability && <div><dt>Disponibilidade</dt><dd>{profile.availability}</dd></div>}</dl><External className="text-link" href={profile.linkedin}>Vamos nos conectar no LinkedIn</External></div><div className="process-list"><p className="eyebrow">COMO O TRABALHO SE ORGANIZA</p><p className="process-intro">Práticas que podem ser vistas no código e na documentação dos projetos.</p><article data-reveal><span>01</span><div><h3>Entender o contexto.</h3><p>Regras de negócio documentadas antes de orientar os fluxos do sistema.</p></div><span aria-hidden="true">↗</span></article><article data-reveal><span>02</span><div><h3>Conectar as partes.</h3><p>Interfaces, autenticação e dados organizados em aplicações e pacotes compartilhados.</p></div><span aria-hidden="true">↗</span></article><article data-reveal><span>03</span><div><h3>Verificar a construção.</h3><p>Testes SQL e verificações de autorização presentes no repositório de gestão.</p></div><span aria-hidden="true">↗</span></article></div></div></section>
-    <section className="container section skills-section" aria-labelledby="skills-title"><div className="section-heading" data-reveal><div><p className="eyebrow"><span className="section-number">03 /</span> HABILIDADES</p><h2 id="skills-title">Ferramentas certas.<br /><span className="muted">Em cada camada.</span></h2></div><p>Tecnologias presentes nos repositórios.<br />Sem porcentagens. Com contexto.</p></div><div className="skills-grid">{skills.map(s => <article key={s.number} data-reveal><span className="skill-number">{'{ '}{s.number}{' }'}</span><h3>{s.title}</h3><p>{s.description}</p><ul>{s.items.map(x => <li key={x}><span aria-hidden="true">↳</span>{x}</li>)}</ul><small>Nos projetos: {s.source}</small></article>)}</div></section>
-    <section className="contact container" id="contato" aria-labelledby="contact-title" data-reveal><div className="contact-glow" aria-hidden="true" /><p className="eyebrow"><span className="status-dot" /> VAMOS CONVERSAR</p><h2 id="contact-title">A próxima ideia<br />pode começar <span className="serif accent">aqui.</span></h2><div className="contact-bottom"><p>Uma oportunidade, um projeto ou uma boa conversa<br />sobre o que podemos construir juntos.</p><div className="contact-actions"><a className="button primary" href={profile.whatsapp} target="_blank" rel="noopener noreferrer">Chamar no WhatsApp <Arrow /><span className="sr-only"> (abre em nova aba)</span></a><CopyEmail email={profile.email} className="button quiet copy-email" /></div></div><div className="contact-links"><span id="email-contato" className="contact-email">{profile.email}</span><External href={profile.whatsapp}>WhatsApp {profile.whatsappDisplay}</External><External href={profile.linkedin}>LinkedIn</External><External href={profile.github}>GitHub pessoal</External><External href={profile.githubBusiness}>GitHub Ovo di Onça</External></div></section>
-  </main><footer className="container footer"><a className="signature" href="#inicio" aria-label="Bruna Rodrigues, voltar ao início">br<span className="accent">.</span></a><p>© {new Date().getFullYear()} {profile.company} · Bruna Rodrigues de Jesus</p><a href="#inicio">Voltar ao topo <span aria-hidden="true">↑</span></a></footer>
-</>; }
 
+function Ext({ href, className = '', children }: { href: string; className?: string; children: React.ReactNode }) {
+  return <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}<span className="sr-only"> (abre em nova aba)</span></a>;
+}
+
+function SectionHead({ pill, title, text, id }: { pill: string; title: string; text?: string; id: string }) {
+  return (
+    <div className="section-head" data-reveal>
+      <span className="pill">{pill}</span>
+      <h2 id={id}>{title}</h2>
+      {text && <p>{text}</p>}
+    </div>
+  );
+}
+
+/** Faixa de chamada para o WhatsApp, repetida entre as seções. */
+function CtaBand({ title, text, label, message }: { title: string; text: string; label: string; message: string }) {
+  return (
+    <div className="cta-band" data-reveal>
+      <div><h3>{title}</h3><p>{text}</p></div>
+      <Ext href={whatsapp(message)} className="btn btn-primary">{label} <Icon name="arrow" size={16} /></Ext>
+    </div>
+  );
+}
+
+export default function Home() {
+  const vitrine = heroProjects.map(id => projects.find(p => p.id === id)!).filter(Boolean);
+  const ovo = projects.find(p => p.id === 'ovo')!;
+
+  return <>
+    <Motion />
+    <a href="#conteudo" className="skip-link">Pular para o conteúdo</a>
+    <Nav />
+
+    <main id="conteudo">
+      {/* 1. Promessa clara */}
+      <section id="inicio" className="hero band-soft" aria-labelledby="hero-title">
+        <div className="container hero-grid">
+          <div className="hero-copy">
+            <span className="pill"><i className="dot" /> {hero.badge}</span>
+            <h1 id="hero-title">{hero.title}</h1>
+            <p className="lead">{hero.subtitle}</p>
+            <div className="hero-actions">
+              <Ext href={whatsapp()} className="btn btn-primary btn-lg"><WhatsAppIcon /> Pedir orçamento no WhatsApp</Ext>
+              <a href="#projetos" className="btn btn-outline btn-lg">Ver projetos</a>
+            </div>
+            <ul className="checks">
+              {hero.checks.map(c => <li key={c}><Icon name="check" size={16} />{c}</li>)}
+            </ul>
+          </div>
+          <HeroShowcase items={vitrine} />
+        </div>
+      </section>
+
+      {/* 2. Benefícios */}
+      <section id="beneficios" className="section band-white" aria-labelledby="t-beneficios">
+        <div className="container">
+          <SectionHead id="t-beneficios" pill="Benefícios" title={benefits.title} text={benefits.subtitle} />
+          <div className="grid grid-4">
+            {benefits.items.map(b => (
+              <article key={b.title} className="card" data-reveal>
+                <span className="icon-tile"><Icon name={b.icon} /></span>
+                <h3>{b.title}</h3><p>{b.text}</p>
+              </article>
+            ))}
+          </div>
+          <div className="note-band" data-reveal>
+            <span><Icon name="phone" size={18} /> Todos os projetos são pensados para celular e computador, com carregamento rápido.</span>
+            <Ext href={whatsapp()} className="text-link">Conversar agora <Icon name="arrow" size={15} /></Ext>
+          </div>
+        </div>
+      </section>
+
+      {/* Serviços */}
+      <section id="servicos" className="section band-soft" aria-labelledby="t-servicos">
+        <div className="container">
+          <SectionHead id="t-servicos" pill="Serviços" title="O que a Kroma pode criar para você" text="Soluções pensadas para valorizar o seu negócio e facilitar o contato com seus clientes." />
+          <div className="grid grid-2">
+            {services.map(s => (
+              <article key={s.title} className="card service-card" data-reveal>
+                <span className="icon-tile"><Icon name={s.icon} /></span>
+                <h3>{s.title}</h3><p>{s.text}</p>
+                <Ext href={whatsapp(`Olá, Bruna! Gostaria de um orçamento para ${s.title.toLowerCase()}.`)} className="service-link">
+                  Pedir orçamento para {s.title.toLowerCase()} <Icon name="arrow" size={16} />
+                </Ext>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Projetos (prova do trabalho) */}
+      <section id="projetos" className="section band-white" aria-labelledby="t-projetos">
+        <div className="container">
+          <SectionHead id="t-projetos" pill="Portfólio" title="Sites já desenvolvidos" text="Projetos publicados para apresentar serviços, gerar contatos e dar mais presença digital a cada negócio." />
+          <div className="grid grid-3">
+            {projects.map(p => (
+              <article key={p.id} className="card project-card" data-reveal>
+                <div className="project-thumb">
+                  <img src={p.image} alt={p.alt} width={800} height={600} loading="lazy" decoding="async" />
+                  <span className="pill pill-white">{p.tag}</span>
+                </div>
+                <div className="project-body">
+                  <h3>{p.name}</h3>
+                  <p>{p.description}</p>
+                  <ul className="tech" aria-label="Tecnologias">{p.tech.map(t => <li key={t}>{t}</li>)}</ul>
+                  <div className="project-foot">
+                    {p.extra ? <Ext href={p.extra.url} className="text-link">{p.extra.label}</Ext> : <span>{p.urlLabel}</span>}
+                    <Ext href={p.url} className="btn btn-primary btn-sm">Acessar projeto <Icon name="external" size={14} /></Ext>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+          <CtaBand title="Gostou dos projetos?" text="Posso criar uma estrutura sob medida para o seu segmento e o seu momento." label="Pedir orçamento" message="Olá, Bruna! Vi seus projetos e gostaria de um orçamento." />
+        </div>
+      </section>
+
+      {/* 4. Provas sociais */}
+      <section id="depoimentos" className="section band-ink" aria-labelledby="t-provas">
+        <div className="container">
+          <SectionHead id="t-provas" pill="Resultados reais" title="Negócios que já estão no ar com a Kroma" text="Cada número abaixo vem dos projetos publicados, que você pode abrir agora mesmo." />
+          <dl className="stats" data-reveal>
+            {proofStats.map(s => <div key={s.label}><dt>{s.label}</dt><dd>{s.value}</dd></div>)}
+          </dl>
+          {testimonials.length > 0 ? (
+            <div className="grid grid-3 testimonials">
+              {testimonials.map(t => (
+                <figure key={t.name} className="quote-card" data-reveal>
+                  <Icon name="quote" size={26} />
+                  <blockquote>{t.quote}</blockquote>
+                  <figcaption><b>{t.name}</b><span>{t.role}</span></figcaption>
+                </figure>
+              ))}
+            </div>
+          ) : (
+            <article className="case" data-reveal>
+              <img src={ovo.image} alt={ovo.alt} width={800} height={600} loading="lazy" />
+              <div>
+                <span className="pill pill-dark">Caso em produção</span>
+                <h3>Ovo di Onça</h3>
+                <p>Um clube de assinatura de ovos caipiras de Onça de Pitangui, MG, que vende para BH e região. O site oficial apresenta a história da marca, os planos e a assinatura pelo WhatsApp, e ganhou uma página de receitas com busca e filtros.</p>
+                <div className="case-links">
+                  <Ext href={ovo.url} className="btn btn-primary btn-sm">Ver o site no ar <Icon name="external" size={14} /></Ext>
+                  {ovo.extra && <Ext href={ovo.extra.url} className="text-link text-link-light">{ovo.extra.label}</Ext>}
+                </div>
+              </div>
+            </article>
+          )}
+        </div>
+      </section>
+
+      {/* Etapas */}
+      <section id="processo" className="section band-soft" aria-labelledby="t-processo">
+        <div className="container">
+          <SectionHead id="t-processo" pill="Passo a passo" title="Como funciona" text="Um processo direto e sem complicação para tirar sua ideia do papel com qualidade." />
+          <ol className="grid grid-4 steps">
+            {steps.map((s, i) => (
+              <li key={s.title} className="card step" data-reveal>
+                <div className="step-top"><span className="icon-tile"><Icon name={s.icon} /></span><span className="step-num">0{i + 1}</span></div>
+                <h3>{s.title}</h3>
+                <p className="step-lead">{s.lead}</p>
+                <p>{s.text}</p>
+                <span className="step-foot">Etapa {i + 1} de {steps.length}</span>
+              </li>
+            ))}
+          </ol>
+          <CtaBand title="Pronto para dar o primeiro passo?" text="Converse direto no WhatsApp para tirar dúvidas e receber um direcionamento para o seu caso." label="Falar no WhatsApp" message="Olá, Bruna! Quero dar o primeiro passo no meu site." />
+        </div>
+      </section>
+
+      {/* Quem faz */}
+      <section id="sobre" className="section band-white" aria-labelledby="t-sobre">
+        <div className="container about-grid">
+          <div data-reveal>
+            <span className="pill">Sobre</span>
+            <h2 id="t-sobre">{about.title}</h2>
+            {about.paragraphs.map(p => <p key={p.slice(0, 20)} className="about-text">{p}</p>)}
+            <dl className="facts">
+              {about.facts.map(f => <div key={f.term}><dt>{f.term}</dt><dd>{f.value}</dd></div>)}
+            </dl>
+            <Ext href={profile.linkedin} className="text-link">Ver meu LinkedIn <Icon name="external" size={14} /></Ext>
+          </div>
+          <div className="skills" data-reveal>
+            {about.skills.map(g => (
+              <div key={g.group} className="card skill-card">
+                <h3>{g.group}</h3>
+                <ul>{g.items.map(i => <li key={i}>{i}</li>)}</ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Dúvidas */}
+      <section id="faq" className="section band-soft" aria-labelledby="t-faq">
+        <div className="container faq-wrap">
+          <SectionHead id="t-faq" pill="Dúvidas comuns" title="Tire suas dúvidas antes de começar" />
+          <div className="faq" data-reveal>
+            {faq.map((f, i) => (
+              <details key={f.q} open={i === 0}>
+                <summary>{f.q}<Icon name="plus" size={18} /></summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA final + contato */}
+      <section id="contato" className="section band-white" aria-labelledby="t-contato">
+        <div className="container">
+          <div className="contact-card" data-reveal>
+            <span className="pill">Contato</span>
+            <h2 id="t-contato">Vamos conversar sobre o seu site?</h2>
+            <p className="lead">Conte um pouco sobre o seu negócio. Respondo com perguntas sobre o que você precisa e uma proposta sem compromisso.</p>
+            <ul className="checks">
+              <li><Icon name="check" size={16} />Resposta ágil</li>
+              <li><Icon name="check" size={16} />Proposta sem compromisso</li>
+              <li><Icon name="check" size={16} />Atendimento online em todo o Brasil</li>
+            </ul>
+            <div className="contact-actions">
+              <Ext href={whatsapp()} className="btn btn-primary btn-lg"><WhatsAppIcon /> Chamar no WhatsApp</Ext>
+              <CopyEmail email={profile.email} className="btn btn-outline btn-lg copy-email" />
+            </div>
+            <ul className="channels">
+              <li><Ext href={whatsapp()} className="channel"><span className="icon-tile"><Icon name="chat" /></span><span><small>WhatsApp</small><b>{profile.whatsappDisplay}</b></span></Ext></li>
+              <li><div className="channel"><span className="icon-tile"><Icon name="mail" /></span><span><small>E-mail</small><b id="email-contato">{profile.email}</b></span></div></li>
+              <li><Ext href={profile.instagram.url} className="channel"><span className="icon-tile"><Icon name="instagram" /></span><span><small>Instagram</small><b>{profile.instagram.handle}</b></span></Ext></li>
+              <li><Ext href={profile.linkedin} className="channel"><span className="icon-tile"><Icon name="linkedin" /></span><span><small>LinkedIn</small><b>brunarodrigues08</b></span></Ext></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer className="site-footer">
+      <div className="container footer-grid">
+        <div>
+          <a href="#inicio" className="brand"><img src="/kroma-logo.png" width={40} height={40} alt="" /><span><b>{profile.companyShort}</b><small>{profile.tagline}</small></span></a>
+          <p className="footer-name">{profile.company}</p>
+          <p>Sites, landing pages e sistemas web para negócios que querem crescer. Por {profile.name}.</p>
+        </div>
+        <nav aria-label="Rodapé">
+          <h2>Navegação</h2>
+          <ul>{nav.map(n => <li key={n.href}><a href={n.href}>{n.label}</a></li>)}</ul>
+        </nav>
+        <div>
+          <h2>Canais oficiais</h2>
+          <div className="footer-icons">
+            <Ext href={whatsapp()} className="icon-btn"><Icon name="chat" /><span className="sr-only">WhatsApp</span></Ext>
+            <Ext href={profile.instagram.url} className="icon-btn"><Icon name="instagram" /><span className="sr-only">Instagram</span></Ext>
+            <Ext href={profile.linkedin} className="icon-btn"><Icon name="linkedin" /><span className="sr-only">LinkedIn</span></Ext>
+          </div>
+          <p>{profile.hours}</p>
+        </div>
+      </div>
+      <div className="container footer-bottom">
+        <span>© {new Date().getFullYear()} {profile.company}. Todos os direitos reservados.</span>
+        <span>{profile.location}</span>
+      </div>
+    </footer>
+
+    <a href="#inicio" className="to-top" aria-label="Voltar ao topo"><Icon name="up" /></a>
+    <Ext href={whatsapp()} className="wa-float"><WhatsAppIcon size={20} /> Falar no WhatsApp</Ext>
+  </>;
+}
