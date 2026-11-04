@@ -53,3 +53,11 @@ Em app/content.ts, profile.availability está vazio para edição. Formação e 
 - Capturas reais (04/11/2026): ovodionca.com.br, find-ofertas, second-brain-lovat-psi, l-pbarbearia, l-pbuffet-infantil, l-podontologia-prof e l-podontologia (.vercel.app).
 - Fora do site: Corretora de Imóveis e Lorena Buffet (decisão da titular); varodrigues.vercel.app (404 em 04/11/2026); trabalho-maf-213-7460-7461 (não abriu); ovo-di-onca0826 (versão antiga do site oficial).
 - Provas sociais: apenas números contados dos projetos publicados. Nenhum depoimento foi inventado; a lista `testimonials` está vazia até a titular incluir depoimentos reais.
+
+
+## Regras de venda aplicadas (04/11/2026)
+Lidas na pasta "05 - Projetos" da titular:
+- `BuffetLorena/promptCriação.md`, `BuffetLorena/design.md`, `BuffetLorena/ENTREGA_E_PROPOSTA.md`, `BuffetNatalia/design.md`: conversão principal pelo WhatsApp em pontos estratégicos; o visitante nunca fica sem próximo passo; não inventar números, depoimentos ou clientes; mobile first (visitantes vindos do Instagram); imagens reais em destaque; "comercial sem parecer agressivo"; jornada em 3 passos; formulário de briefing ligado ao WhatsApp (próxima evolução sugerida na entrega da Lorena).
+- Planilha "Lojas que não possuem site": público-alvo (barbearias, pet shops, odontologia, salões/estética, buffets da região que só usam Instagram/Facebook/Linktree com WhatsApp). Base da seção "O problema" e dos segmentos.
+- `Proposta de orçamento - 008-2025.docx`: etapas do serviço (planejamento/UX, front-end responsivo e SEO, implantação e domínio, ajustes pós-lançamento, manual de uso). Base da seção "O que está incluso". Dados pessoais e valores da proposta não foram usados no site.
+- Cidades atendidas: informadas pela titular (campanha de prospecção em MG).

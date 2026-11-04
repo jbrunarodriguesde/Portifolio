@@ -85,17 +85,6 @@ export function initMotion(): () => void {
           return () => root.classList.remove('h-pinned');
         });
 
-        // 8. Grade 3D das landing pages: deitada, se endireita ao rolar (ideia das grades da Codrops)
-        mm.add('(min-width: 900px)', () => {
-        gsap.fromTo('.grid3d', { rotateX: 40, scale: 0.84, yPercent: 8 }, {
-          rotateX: 0, scale: 1, yPercent: 0, ease: 'none',
-          scrollTrigger: { trigger: '.grid3d-wrap', start: 'top bottom', end: 'center 55%', scrub: true },
-        });
-        gsap.utils.toArray<HTMLElement>('.grid3d .tile').forEach((t, i) => {
-          gsap.fromTo(t, { z: -260 - (i % 2) * 180, opacity: 0.25 }, { z: 0, opacity: 1, ease: 'none', scrollTrigger: { trigger: '.grid3d-wrap', start: 'top bottom', end: 'center 55%', scrub: true } });
-        });
-        });
-
         // 9. Números contando
         gsap.utils.toArray<HTMLElement>('[data-count]').forEach(el => {
           const final = Number(el.dataset.count);

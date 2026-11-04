@@ -19,9 +19,41 @@ export const profile = {
 /* Promessa clara no topo */
 export const hero = {
   description:
-    'Crio sites, landing pages e sistemas web que fazem o seu negócio ser encontrado, escolhido e chamado no WhatsApp. Leves no celular e feitos sob medida.',
-  checks: ['Design sob medida', 'Pensado para celular', 'WhatsApp em um clique'],
+    'Seu negócio já está no Instagram. Eu crio o site que faz você aparecer no Google, explica o que você oferece e leva o cliente direto para o seu WhatsApp.',
+  checks: ['Proposta sem compromisso', 'Você aprova antes de publicar', 'Atendimento em Pará de Minas e região'],
 };
+
+/* O problema de quem só tem rede social (tirado da pesquisa de lojas sem site) */
+export const problems = [
+  { title: 'Quem procura no Google não te encontra.', text: 'Sem um site, o seu negócio fica de fora quando alguém pesquisa pelo serviço na sua cidade.' },
+  { title: 'O Linktree só manda para o WhatsApp.', text: 'O cliente chega sem saber preços, serviços ou horários, e a conversa começa do zero.' },
+  { title: 'A informação fica espalhada.', text: 'Posts, destaques e stories somem no feed. Quem chega agora não acha o que precisa.' },
+];
+
+/* Segmentos que mais aparecem na prospecção, com exemplo publicado quando existe */
+export const segments = [
+  { id: 'barbearia', name: 'Barbearia', pitch: 'Cortes, preços, horários e agendamento em um toque.', example: { name: 'Barbearia Premium', url: 'https://l-pbarbearia.vercel.app', image: '/projetos/barbearia.webp' } },
+  { id: 'odonto', name: 'Odontologia', pitch: 'Tratamentos explicados com clareza e agendamento de consulta pelo WhatsApp.', example: { name: 'Clínica Sorridentes', url: 'https://l-podontologia.vercel.app', image: '/projetos/sorridentes.webp' } },
+  { id: 'buffet', name: 'Buffet e eventos', pitch: 'Fotos que dão vontade, tipos de evento e pedido de orçamento sem enrolação.', example: { name: 'Buffet Kids', url: 'https://l-pbuffet-infantil.vercel.app', image: '/projetos/buffet-infantil.webp' } },
+  { id: 'estetica', name: 'Salão e estética', pitch: 'Serviços, antes e depois e agenda organizada, para a cliente escolher e marcar.', example: null },
+  { id: 'pet', name: 'Pet shop', pitch: 'Banho, tosa e produtos em uma página, com agendamento direto.', example: null },
+  { id: 'outro', name: 'Outro negócio', pitch: 'Me conte o que você faz. Cada site é feito sob medida para o seu segmento.', example: null },
+];
+
+/* O que está incluso (a partir das etapas da proposta de orçamento) */
+export const included = [
+  { title: 'Planejamento', text: 'Conversa sobre o negócio, o público e o que precisa aparecer primeiro.' },
+  { title: 'Design sob medida', text: 'Visual criado a partir da sua marca e das suas fotos, sem cara de modelo pronto.' },
+  { title: 'Feito para o celular', text: 'Responsivo, leve e com botões grandes para quem chega pelo Instagram.' },
+  { title: 'Google e compartilhamento', text: 'Título, descrição e prévia bonita quando o link for enviado no WhatsApp.' },
+  { title: 'WhatsApp com mensagem pronta', text: 'Botões em pontos estratégicos que já abrem a conversa com o assunto certo.' },
+  { title: 'Domínio e publicação', text: 'Ajuda com o seunegocio.com.br, HTTPS e o site no ar.' },
+  { title: 'Ajustes depois do lançamento', text: 'Correções finas nos primeiros dias, com o site já funcionando.' },
+  { title: 'Orientação de uso', text: 'Explicação de como pedir mudanças e manter as informações atualizadas.' },
+];
+
+/* Cidades atendidas (atendimento online para o restante do Brasil) */
+export const cities = ['Pará de Minas', 'Itaúna', 'Divinópolis', 'Nova Serrana', 'Pitangui', 'Florestal', 'Igaratinga', 'Mateus Leme', 'Juatuba', 'São Gonçalo do Pará', 'Betim', 'Belo Horizonte'];
 
 /* Benefícios: o que um bom site faz pelo negócio */
 export const benefits = [
@@ -107,10 +139,9 @@ export const testimonials: { quote: string; name: string; role: string }[] = [];
 
 /* Como funciona */
 export const steps = [
-  { title: 'Conversa inicial.', text: 'Você conta sobre o seu negócio e o seu objetivo. Entendo o público e o que precisa ser destacado.' },
-  { title: 'Estrutura e visual.', text: 'Organizo as seções, a ordem das informações e o visual, com foco na clareza.' },
-  { title: 'Desenvolvimento e ajustes.', text: 'Escrevo o código, ajusto para celular e computador e reviso tudo com você.' },
-  { title: 'Publicação.', text: 'Com a sua aprovação, configuro domínio e HTTPS e coloco o site no ar.' },
+  { title: 'Você conta.', text: 'Pelo WhatsApp, você fala do seu negócio, do seu público e do que quer que o cliente faça no site.' },
+  { title: 'Eu planejo e crio.', text: 'Organizo as informações, crio o visual e mostro a página para você aprovar antes de qualquer publicação.' },
+  { title: 'Seu site no ar.', text: 'Configuro domínio e HTTPS, publico e acompanho os primeiros ajustes com o site funcionando.' },
 ];
 
 export const facts = [
