@@ -385,3 +385,58 @@ html:not(.motion) .marquee-track{animation:marquee 40s linear infinite}
 .cta-strip{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:44px;padding:22px 26px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(110deg,color-mix(in srgb,var(--accent) 10%,transparent),transparent 60%)}
 .cta-strip p{display:flex;align-items:center;gap:12px;font-size:17px;letter-spacing:-.02em}
 @media (max-width:640px){.cta-strip .button{width:100%}}
+
+/* ================= Slow motion ================= */
+/* Lenis */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+
+/* Cortina de abertura (criada pelo script) */
+.curtain{position:fixed;inset:0;z-index:200;background:var(--bg);display:grid;place-items:center;overflow:hidden;pointer-events:none}
+.curtain span{display:block;font-size:clamp(60px,10vw,140px);font-weight:700;letter-spacing:-.08em;color:var(--text)}
+.curtain i{font-style:normal;color:var(--accent)}
+.hero-title .char{display:inline-block;will-change:transform}
+
+/* Barra de progresso */
+.progress{position:fixed;left:0;top:0;height:2px;width:100%;z-index:60;background:linear-gradient(90deg,var(--aurora-1),var(--accent),var(--aurora-2));transform:scaleX(0);transform-origin:0 50%;pointer-events:none}
+
+/* Cursor de vidro */
+.cursor{position:fixed;left:0;top:0;z-index:150;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;pointer-events:none;opacity:0;
+  background:color-mix(in srgb,var(--accent) 85%,transparent);transition:width .5s cubic-bezier(.2,.8,.2,1),height .5s cubic-bezier(.2,.8,.2,1),margin .5s cubic-bezier(.2,.8,.2,1),background .4s,opacity .4s;display:grid;place-items:center;mix-blend-mode:normal}
+.has-cursor .cursor{opacity:1}
+.cursor.is-link{width:54px;height:54px;margin:-27px 0 0 -27px;background:color-mix(in srgb,var(--accent) 18%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 70%,transparent);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.cursor.is-view{width:96px;height:96px;margin:-48px 0 0 -48px;background:color-mix(in srgb,var(--glass-tint) 100%,transparent);box-shadow:inset 0 1px 0 var(--glass-edge),inset 0 0 0 1px rgb(255 255 255 / .2);-webkit-backdrop-filter:blur(10px) saturate(170%);backdrop-filter:blur(10px) saturate(170%)}
+.cursor-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text);opacity:0;transform:scale(.6);transition:opacity .3s,transform .5s}
+.cursor.is-view .cursor-label{opacity:1;transform:none}
+
+/* Manifesto */
+.manifesto{padding-block:150px 40px}
+.manifesto-text{font-size:clamp(34px,5.4vw,84px);line-height:1.08;letter-spacing:-.05em;max-width:18ch}
+.manifesto-text em{font-style:italic}
+.manifesto .word{display:inline-block;will-change:opacity,transform,filter}
+
+/* Títulos divididos em linhas */
+.h2 .line,.contact-title .line{padding-bottom:.06em}
+
+/* Problemas empilhados (ativado pelo script em telas largas) */
+.problems.stack{display:block}
+.problems.stack li{position:sticky;top:calc(130px + var(--i, 0) * 26px);min-height:320px;margin-bottom:34vh;display:grid;grid-template-columns:120px 1fr;align-content:center;column-gap:30px;padding:56px 60px;border-radius:30px;transform-origin:50% 0%;
+  background:linear-gradient(140deg,color-mix(in srgb,var(--aurora-1) 8%,var(--panel)),var(--panel) 60%);box-shadow:0 -20px 60px -30px rgb(0 0 0 / .6)}
+.problems.stack li:last-child{margin-bottom:0}
+.problems.stack li .mono{font-size:14px;grid-row:span 2;padding-top:10px}
+.problems.stack h3{font-size:clamp(34px,4vw,60px);margin-top:0;line-height:1.05}
+.problems.stack p{font-size:16px;max-width:52ch}
+
+/* Galeria com profundidade */
+.h-pinned .h-track{perspective:1600px}
+.h-card{transform-style:preserve-3d;will-change:transform}
+
+/* Assinatura gigante no fim */
+.wordmark{overflow:hidden;display:flex;flex-wrap:wrap;gap:0 .25em;padding:40px max(24px,calc((100vw - 1320px)/2 + 24px)) 0;font-size:clamp(64px,15vw,250px);line-height:.95;letter-spacing:-.07em;border-top:1px solid var(--line)}
+.wordmark span{display:inline-block}
+
+@media (max-width:640px){.manifesto{padding-block:90px 10px}}
+@media (prefers-reduced-motion:reduce){.cursor,.progress,.curtain{display:none}}
+@media (max-width:640px){.nav-wrap{padding-inline:12px}.nav{padding:8px 8px 8px 18px;min-height:54px}.nav-cta{padding:11px 14px}.nav-cta svg{display:none}}

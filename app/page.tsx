@@ -1,4 +1,4 @@
-import { profile, hero, problems, benefits, included, projects, proofStats, testimonials, steps, cities, facts, faq, whatsapp } from './content';
+import { profile, hero, services, problems, benefits, included, projects, proofStats, testimonials, steps, cities, facts, faq, whatsapp } from './content';
 import Motion from './motion';
 import Glass from './glass';
 import CopyEmail from './copy-email';
@@ -72,6 +72,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Letreiro de serviços */}
+      <div className="marquee" aria-label="Serviços: landing pages, sites institucionais, redesign e sistemas web">
+        <div className="marquee-track" aria-hidden="true">
+          {[0, 1].map(k => <span key={k}>{services.map(sv => <span key={sv.title + k}>{sv.title}<i className="serif accent"> ✦ </i></span>)}<span>WhatsApp em um clique<i className="serif accent"> ✦ </i></span></span>)}
+        </div>
+      </div>
+
+      {/* Manifesto: as palavras acendem com a rolagem */}
+      <section className="manifesto container" aria-label="Por que ter um site">
+        <p className="manifesto-text">Quem procura no Google precisa <em className="serif accent">te encontrar.</em> Quem te encontra precisa <em className="serif accent">entender o que você faz.</em> E quem entende precisa conseguir <em className="serif accent">te chamar em um clique.</em></p>
+      </section>
+
       {/* 2. A dor de quem só tem rede social */}
       <section className="container section problem" aria-labelledby="t-problema">
         <div className="section-head" data-reveal>
@@ -79,7 +91,7 @@ export default function Home() {
           <p className="muted-p">Muitos negócios da região vivem só de rede social e de um link para o WhatsApp. Funciona até certo ponto.</p>
         </div>
         <ol className="problems">
-          {problems.map((p, i) => <li key={p.title} data-reveal><span className="mono">0{i + 1}</span><h3>{p.title}</h3><p>{p.text}</p></li>)}
+          {problems.map((p, i) => <li key={p.title}><span className="mono">0{i + 1}</span><h3>{p.title}</h3><p>{p.text}</p></li>)}
         </ol>
       </section>
 
@@ -115,7 +127,7 @@ export default function Home() {
           <p className="muted-p">Você não precisa entender de tecnologia. Eu cuido de cada etapa e explico tudo pelo caminho.</p>
         </div>
         <ul className="included">
-          {included.map(i => <li key={i.title} data-reveal><span className="inc-check"><Check /></span><div><h3>{i.title}</h3><p>{i.text}</p></div></li>)}
+          {included.map(i => <li key={i.title}><span className="inc-check"><Check /></span><div><h3>{i.title}</h3><p>{i.text}</p></div></li>)}
         </ul>
         <Cta text="Quer saber quanto fica para o seu negócio?" label="Pedir orçamento sem compromisso" message="Olá, Bruna! Quero um orçamento sem compromisso para um site." />
       </section>
@@ -244,8 +256,10 @@ export default function Home() {
       </section>
     </main>
 
+    <div className="wordmark" aria-hidden="true"><span>Bruna</span><span className="serif accent">Rodrigues</span></div>
     <footer className="container footer"><a className="signature" href="#inicio" aria-label="Bruna Rodrigues, voltar ao início">br<span className="accent">.</span></a><p>© {new Date().getFullYear()} {profile.name} · Sites para negócios de {profile.location} e região</p><a href="#inicio">Voltar ao topo ↑</a></footer>
 
+    <div className="cursor" aria-hidden="true"><span className="cursor-label">Ver</span></div>
     <a href={whatsapp(orcamento)} target="_blank" rel="noopener noreferrer" className="wa-float liquid" data-glass="1"><Wa /><span className="wa-label">Quero meu site</span><span className="sr-only"> (abre o WhatsApp)</span></a>
   </>;
 }
