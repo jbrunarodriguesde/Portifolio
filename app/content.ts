@@ -179,7 +179,10 @@ export const moreProjects = [
   { name: 'Limpeza Perfeita', text: 'Guia de limpeza e organização da casa, com rotina da semana, checklists e hábitos.', demo: 'https://ovodionca.com.br/Teste/Limpeza%20perfeita/' },
   { name: 'FindOfertas', text: 'Comparador do custo real de uma compra, com frete, cupons, cashback e pontos.', demo: 'https://find-ofertas.vercel.app' },
   { name: 'Second Brain', text: 'Aplicativo pessoal de anotações com login Google e dados na nuvem.', demo: 'https://second-brain-lovat-psi.vercel.app' },
-  { name: 'Landing pages locais', text: 'Modelos para barbearia, buffet infantil e clínicas odontológicas.', demo: 'https://l-pbarbearia.vercel.app' },
+  { name: 'Barbearia Premium', text: 'Landing page de barbearia com cortes, preços e agendamento pelo WhatsApp.', demo: 'https://l-pbarbearia.vercel.app' },
+  { name: 'Buffet Kids', text: 'Landing page de buffet infantil com tipos de festa e pedido de orçamento.', demo: 'https://l-pbuffet-infantil.vercel.app' },
+  { name: 'OdontoSorriso', text: 'Landing page de clínica odontológica com tratamentos e agendamento de consulta.', demo: 'https://l-podontologia-prof.vercel.app' },
+  { name: 'Clínica Sorridentes', text: 'Landing page de consultório odontológico com fotos do espaço e contato.', demo: 'https://l-podontologia.vercel.app' },
 ];
 
 export const landingPages = [
