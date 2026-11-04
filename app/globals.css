@@ -159,7 +159,7 @@ html:not(.motion) .marquee-track{animation:marquee 40s linear infinite}
 .scroll-hint{display:inline-block;margin-top:34px;color:var(--accent)}
 .h-card{position:relative;flex:0 0 min(1040px,86vw);display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);border:1px solid var(--line);border-radius:26px;overflow:hidden;background:var(--panel);scroll-snap-align:center}
 .h-shot{position:relative;overflow:hidden;min-height:480px;background:#0b0b0b}
-.tone-warm .h-shot{background:#2a1d10}.tone-cool .h-shot{background:#18233a}.tone-violet .h-shot{background:#1f1b33}
+.tone-warm .h-shot{background:#2a1d10}.tone-cool .h-shot{background:#18233a}.tone-violet .h-shot{background:#1f1b33}.tone-lilac .h-shot{background:#2a1f45}
 .h-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;will-change:transform}
 .h-bar{position:absolute;z-index:2;left:16px;right:16px;top:16px;display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;font:10px var(--mono);color:#fff;text-shadow:0 1px 2px rgb(0 0 0 / .5)}
 .dots{display:flex;gap:5px}.dots i{width:7px;height:7px;border-radius:50%;background:rgb(255 255 255 / .7)}

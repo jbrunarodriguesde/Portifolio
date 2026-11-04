@@ -61,3 +61,9 @@ Lidas na pasta "05 - Projetos" da titular:
 - Planilha "Lojas que não possuem site": público-alvo (barbearias, pet shops, odontologia, salões/estética, buffets da região que só usam Instagram/Facebook/Linktree com WhatsApp). Base da seção "O problema" e dos segmentos.
 - `Proposta de orçamento - 008-2025.docx`: etapas do serviço (planejamento/UX, front-end responsivo e SEO, implantação e domínio, ajustes pós-lançamento, manual de uso). Base da seção "O que está incluso". Dados pessoais e valores da proposta não foram usados no site.
 - Cidades atendidas: informadas pela titular (campanha de prospecção em MG).
+
+## Vértice (loja virtual)
+- Fonte: código do projeto em "05 - Projetos/vertice" (README.md, BACKEND.md, DESIGN.md, lib/catalog.ts).
+- Foto: captura da página inicial rodando localmente a partir desse código (public/projetos/vertice.webp).
+- A publicação no ChatGPT Sites é privada e o repositório no GitHub também; por isso o card usa "Pedir demonstração" pelo WhatsApp.
+- Layout inspirado em Loja Virtual, de Ryan Menezes (MIT), conforme LICENSE.reference do projeto.

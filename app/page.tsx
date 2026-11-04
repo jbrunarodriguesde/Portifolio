@@ -21,11 +21,12 @@ function Cta({ text, label, message }: { text: string; label: string; message: s
 }
 
 export default function Home() {
-  const [ovo, find, brain] = projects;
+  const [ovo, find, brain, vertice] = projects;
   const gallery = [
     { p: ovo, img: '/projetos/ovodionca.webp', w: 799, h: 609, alt: 'Site oficial do Ovo di Onça com galinhas soltas ao fundo e o título Ovos caipiras fresquinhos, com sabor de verdade', tone: 'warm' },
     { p: find, img: '/projetos/findofertas.webp', w: 1200, h: 833, alt: 'Tela de acesso do FindOfertas com login pelo Google ou por e-mail', tone: 'cool' },
     { p: brain, img: '/projetos/second-brain.webp', w: 480, h: 360, alt: 'Tela de entrada do Second Brain com login pelo Google', tone: 'violet' },
+    { p: vertice, img: '/projetos/vertice.webp', w: 1200, h: 750, alt: 'Página inicial da loja Vértice com headphone em destaque, título Seu mundo. Com mais som. e vitrine de notebook', tone: 'lilac' },
   ];
   const orcamento = 'Olá, Bruna! Quero um site para o meu negócio.';
 
@@ -138,7 +139,7 @@ export default function Home() {
           <div className="h-intro">
             <Label n="05">PROJETOS</Label>
             <h2 id="t-projetos" className="h2">Sites no ar.<br /><span className="muted">Possibilidades reais.</span></h2>
-            <p className="muted-p">Do site oficial de um negócio real a aplicações com login. Tudo publicado e aberto para você conferir.</p>
+            <p className="muted-p">Do site oficial de um negócio real a aplicações com login e uma loja virtual completa.</p>
             <span className="scroll-hint mono" aria-hidden="true">ROLE PARA EXPLORAR →</span>
           </div>
           {gallery.map(({ p, img, w, h, alt, tone }) => (
@@ -154,7 +155,7 @@ export default function Home() {
                 <p className="desc">{p.description}</p>
                 <details className="details"><summary>O problema e a construção <span aria-hidden="true">+</span></summary><div><p>{p.problem}</p><ul>{p.features.map(f => <li key={f}>{f}</li>)}</ul><p className="note">{p.note}</p></div></details>
                 <ul className="tags">{p.technologies.map(t => <li key={t}>{t}</li>)}</ul>
-                <div className="links"><Ext href={p.demo}>Ver site</Ext>{p.extra?.map(l => <Ext key={l.href} href={l.href}>{l.label}</Ext>)}</div>
+                <div className="links">{p.demo ? <Ext href={p.demo}>Ver site</Ext> : <Ext href={whatsapp(`Olá, Bruna! Quero ver a demonstração do projeto ${p.name}.`)}>Pedir demonstração</Ext>}{p.extra?.map(l => <Ext key={l.href} href={l.href}>{l.label}</Ext>)}</div>
               </div>
             </article>
           ))}
