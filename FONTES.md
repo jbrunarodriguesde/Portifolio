@@ -67,3 +67,9 @@ Lidas na pasta "05 - Projetos" da titular:
 - Foto: captura da página inicial rodando localmente a partir desse código (public/projetos/vertice.webp).
 - A publicação no ChatGPT Sites é privada e o repositório no GitHub também; por isso o card usa "Pedir demonstração" pelo WhatsApp.
 - Layout inspirado em Loja Virtual, de Ryan Menezes (MIT), conforme LICENSE.reference do projeto.
+- Seção "Loja virtual": telas capturadas da Vértice rodando localmente (vitrine, produto, sacola com cupom DEMO10, checkout, pedido de teste criado e painel). Regras listadas vêm do README.md e BACKEND.md do projeto.
+
+## ORLA Objects, Vetra Studio, Bruma Café e Nimbo
+- Fonte: README.md de cada projeto em "05 - Projetos" e os sites publicados (orla-objects.vercel.app, vetra-studio.vercel.app).
+- Fotos: capturas das páginas iniciais publicadas (public/projetos/orla.webp e vetra.webp).
+- Bruma Café e Nimbo: capturas dos sites publicados (bruma-cafe-omega.vercel.app e nimbo-lilac.vercel.app/visao-geral?demo=1).

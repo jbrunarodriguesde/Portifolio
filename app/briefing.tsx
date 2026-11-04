@@ -6,7 +6,7 @@ import { initBriefing } from './lib-briefing';
 const perguntas = [
   { name: 'negocio', titulo: 'Qual é o seu negócio?', dica: 'Escolha o que mais se parece com o seu.', opcoes: segments.map(s => s.name) },
   { name: 'hoje', titulo: 'O que você tem hoje?', dica: 'Assim eu sei de onde partimos.', opcoes: ['Só Instagram', 'Instagram e Facebook', 'Linktree', 'Um site antigo', 'Nada ainda'] },
-  { name: 'objetivo', titulo: 'O que o site precisa fazer por você?', dica: 'Escolha o principal. O resto a gente conversa.', opcoes: ['Receber agendamentos', 'Receber pedidos de orçamento', 'Mostrar meus serviços e preços', 'Aparecer no Google'] },
+  { name: 'objetivo', titulo: 'O que o site precisa fazer por você?', dica: 'Escolha o principal. O resto a gente conversa.', opcoes: ['Vender meus produtos online', 'Receber agendamentos', 'Receber pedidos de orçamento', 'Mostrar meus serviços e preços', 'Aparecer no Google'] },
 ];
 
 /** Pedido guiado em etapas. A lógica fica em lib-briefing.ts. */

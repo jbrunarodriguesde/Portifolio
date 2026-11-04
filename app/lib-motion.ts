@@ -24,6 +24,7 @@ export function initMotion(): () => void {
 
     // ---------- Rolagem com inércia (a sensação de câmera lenta) ----------
     const lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 1, smoothWheel: true });
+    (window as unknown as { __lenis?: unknown }).__lenis = lenis;
     lenis.on('scroll', ScrollTrigger.update);
     const raf = (t: number) => lenis.raf(t * 1000);
     gsap.ticker.add(raf);
@@ -177,7 +178,7 @@ export function initMotion(): () => void {
       });
 
       // ---------- 9. Imagens reveladas por cortina, com zoom lento ----------
-      gsap.utils.toArray<HTMLElement>('.seg-visual, .facts-card').forEach(el => {
+      gsap.utils.toArray<HTMLElement>('.seg-visual, .facts-card, .shop-browser').forEach(el => {
         gsap.fromTo(el, { clipPath: 'inset(18% 12% 18% 12% round 26px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', duration: 0.9, ease: 'expo.inOut',
           scrollTrigger: { trigger: el, start: 'top 80%' } });
       });
@@ -259,6 +260,7 @@ export function initMotion(): () => void {
       ctx.revert();
       gsap.ticker.remove(raf);
       lenis.destroy();
+      delete (window as unknown as { __lenis?: unknown }).__lenis;
       document.removeEventListener('click', onAnchor);
       document.querySelectorAll('.curtain, .progress').forEach(n => n.remove());
     };

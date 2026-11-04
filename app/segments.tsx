@@ -33,10 +33,12 @@ export default function Segments() {
             ? <p className="muted-p">Veja um modelo publicado para este segmento e imagine o seu negócio nele.</p>
             : <p className="muted-p">Ainda não tenho um modelo publicado para este segmento. O seu pode ser o primeiro, feito do zero para a sua marca.</p>}
           <div className="seg-actions">
-            <a className="button primary" href={whatsapp(`Olá, Bruna! Tenho um negócio de ${s.name.toLowerCase()} e quero um site.`)} target="_blank" rel="noopener noreferrer">
-              Quero um site para {s.id === 'outro' ? 'o meu negócio' : s.name.toLowerCase()}<span className="sr-only"> (abre o WhatsApp)</span>
+            <a className="button primary" href={whatsapp(`Olá, Bruna! Tenho um negócio de ${s.name.toLowerCase()} e quero ${s.id === 'loja' ? 'uma loja virtual' : 'um site'}.`)} target="_blank" rel="noopener noreferrer">
+              {s.id === 'loja' ? 'Quero minha loja virtual' : `Quero um site para ${s.id === 'outro' ? 'o meu negócio' : s.name.toLowerCase()}`}<span className="sr-only"> (abre o WhatsApp)</span>
             </a>
-            {s.example && <a className="text-link" href={s.example.url} target="_blank" rel="noopener noreferrer">Ver o modelo {s.example.name}<span className="sr-only"> (abre em nova aba)</span></a>}
+            {s.example && (s.example.url.startsWith('#')
+              ? <a className="text-link" href={s.example.url}>Ver a loja {s.example.name} por dentro</a>
+              : <a className="text-link" href={s.example.url} target="_blank" rel="noopener noreferrer">Ver o modelo {s.example.name}<span className="sr-only"> (abre em nova aba)</span></a>)}
           </div>
         </div>
         <div className="seg-visual">

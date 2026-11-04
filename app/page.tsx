@@ -1,4 +1,5 @@
-import { profile, hero, services, problems, benefits, included, projects, proofStats, testimonials, steps, cities, facts, faq, whatsapp } from './content';
+import { profile, hero, services, problems, benefits, included, projects, proofStats, testimonials, steps, cities, facts, faq, whatsapp, shopRules, moreProjects } from './content';
+import Shop from './shop';
 import Motion from './motion';
 import Glass from './glass';
 import CopyEmail from './copy-email';
@@ -21,13 +22,7 @@ function Cta({ text, label, message }: { text: string; label: string; message: s
 }
 
 export default function Home() {
-  const [ovo, find, brain, vertice] = projects;
-  const gallery = [
-    { p: ovo, img: '/projetos/ovodionca.webp', w: 799, h: 609, alt: 'Site oficial do Ovo di Onça com galinhas soltas ao fundo e o título Ovos caipiras fresquinhos, com sabor de verdade', tone: 'warm' },
-    { p: find, img: '/projetos/findofertas.webp', w: 1200, h: 833, alt: 'Tela de acesso do FindOfertas com login pelo Google ou por e-mail', tone: 'cool' },
-    { p: brain, img: '/projetos/second-brain.webp', w: 480, h: 360, alt: 'Tela de entrada do Second Brain com login pelo Google', tone: 'violet' },
-    { p: vertice, img: '/projetos/vertice.webp', w: 1200, h: 750, alt: 'Página inicial da loja Vértice com headphone em destaque, título Seu mundo. Com mais som. e vitrine de notebook', tone: 'lilac' },
-  ];
+  const gallery = projects.filter(p => p.ready);
   const orcamento = 'Olá, Bruna! Quero um site para o meu negócio.';
 
   return <>
@@ -38,7 +33,7 @@ export default function Home() {
     <header className="nav-wrap">
       <nav className="nav liquid" aria-label="Navegação principal">
         <a className="signature" href="#inicio" aria-label="Bruna Rodrigues, início">br<span className="accent">.</span><span className="nav-name">Bruna Rodrigues</span></a>
-        <div className="nav-links"><a href="#segmentos">Exemplos</a><a href="#incluso">O que inclui</a><a href="#projetos">Projetos</a><a href="#pedido">Pedir orçamento</a></div>
+        <div className="nav-links"><a href="#segmentos">Exemplos</a><a href="#lojas">Lojas virtuais</a><a href="#incluso">O que inclui</a><a href="#projetos">Projetos</a><a href="#pedido">Pedir orçamento</a></div>
         <Ext href={whatsapp(orcamento)} className="nav-cta">Quero meu site</Ext>
       </nav>
     </header>
@@ -65,16 +60,16 @@ export default function Home() {
               <ul className="hero-checks">{hero.checks.map(c => <li key={c}><Check />{c}</li>)}</ul>
             </div>
             <div className="hero-shots" aria-hidden="true">
-              <figure className="shot shot-a"><img src="/projetos/barbearia.webp" alt="" width={799} height={609} /></figure>
-              <figure className="shot shot-b"><img src="/projetos/buffet-infantil.webp" alt="" width={800} height={600} /></figure>
-              <figure className="shot shot-c"><img src="/projetos/ovodionca.webp" alt="" width={799} height={609} fetchPriority="high" /></figure>
+              <figure className="shot shot-a"><img src="/projetos/vetra.webp" alt="" width={1200} height={750} /></figure>
+              <figure className="shot shot-b"><img src="/projetos/orla.webp" alt="" width={1200} height={750} /></figure>
+              <figure className="shot shot-c"><img src="/projetos/bruma.webp" alt="" width={1200} height={750} fetchPriority="high" /></figure>
             </div>
           </div>
         </div>
       </section>
 
       {/* Letreiro de serviços */}
-      <div className="marquee" aria-label="Serviços: landing pages, sites institucionais, redesign e sistemas web">
+      <div className="marquee" aria-label="Serviços: lojas virtuais, landing pages, sites institucionais, redesign e sistemas web">
         <div className="marquee-track" aria-hidden="true">
           {[0, 1].map(k => <span key={k}>{services.map(sv => <span key={sv.title + k}>{sv.title}<i className="serif accent"> ✦ </i></span>)}<span>WhatsApp em um clique<i className="serif accent"> ✦ </i></span></span>)}
         </div>
@@ -121,10 +116,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 4b. Loja virtual: a Vértice por dentro */}
+      <section className="shop-section" id="lojas" aria-labelledby="t-loja">
+        <div className="aurora aurora-low" aria-hidden="true"><i /><i /><i /></div>
+        <div className="container">
+          <div className="section-head" data-reveal>
+            <div><Label n="04">LOJA VIRTUAL</Label><h2 id="t-loja" className="h2">Venda online,<br /><span className="serif accent">do produto ao pedido.</span></h2></div>
+            <p className="muted-p">A Vértice é uma loja completa que eu construí, com vitrine, sacola, checkout e painel de gestão. Veja o caminho de uma compra, tela por tela.</p>
+          </div>
+          <Shop />
+          <ul className="shop-rules">
+            {shopRules.map(r => <li key={r.title}><span className="inc-check"><Check /></span><div><h3>{r.title}</h3><p>{r.text}</p></div></li>)}
+          </ul>
+          <div className="shop-cta liquid-card" data-reveal>
+            <div>
+              <h3>Quer vender os seus produtos online?</h3>
+              <p>Eu monto a loja com a sua marca, os seus produtos e as formas de entrega da sua região. Para vender de verdade, ela é ligada a um serviço de pagamento (Pix e cartão) e de frete, escolhidos com você no orçamento.</p>
+              <p className="note">Telas reais da Vértice em modo de demonstração: produtos, pagamentos e fretes de teste, sem cobrança.</p>
+            </div>
+            <div className="shop-cta-actions">
+              <Ext href={whatsapp('Olá, Bruna! Quero uma loja virtual para vender os meus produtos.')} className="button primary" arrow={false}><Wa /> Quero minha loja virtual</Ext>
+              <Ext href={whatsapp('Olá, Bruna! Quero ver a demonstração da loja Vértice.')} className="text-link">Pedir uma demonstração ao vivo</Ext>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 5. O que está incluso */}
       <section className="container section" id="incluso" aria-labelledby="t-inc">
         <div className="section-head" data-reveal>
-          <div><Label n="04">O QUE ESTÁ INCLUSO</Label><h2 id="t-inc" className="h2">Do planejamento<br /><span className="muted">ao site no ar.</span></h2></div>
+          <div><Label n="05">O QUE ESTÁ INCLUSO</Label><h2 id="t-inc" className="h2">Do planejamento<br /><span className="muted">ao site no ar.</span></h2></div>
           <p className="muted-p">Você não precisa entender de tecnologia. Eu cuido de cada etapa e explico tudo pelo caminho.</p>
         </div>
         <ul className="included">
@@ -137,19 +158,19 @@ export default function Home() {
       <section className="h-gallery" id="projetos" aria-labelledby="t-projetos">
         <div className="h-track">
           <div className="h-intro">
-            <Label n="05">PROJETOS</Label>
-            <h2 id="t-projetos" className="h2">Sites no ar.<br /><span className="muted">Possibilidades reais.</span></h2>
-            <p className="muted-p">Do site oficial de um negócio real a aplicações com login e uma loja virtual completa.</p>
+            <Label n="06">PROJETOS</Label>
+            <h2 id="t-projetos" className="h2">Projetos em<br /><span className="serif accent">destaque.</span></h2>
+            <p className="muted-p">Do site oficial de um negócio real a lojas, agendamento e sistemas. Abra cada um e navegue como cliente.</p>
             <span className="scroll-hint mono" aria-hidden="true">ROLE PARA EXPLORAR →</span>
           </div>
-          {gallery.map(({ p, img, w, h, alt, tone }) => (
-            <article key={p.id} className={`h-card tone-${tone}`}>
+          {gallery.map((p, i) => (
+            <article key={p.id} className={`h-card tone-${p.tone}`}>
               <div className="h-shot">
                 <div className="h-bar frost"><span className="dots"><i /><i /><i /></span><span>{p.demoLabel}</span></div>
-                <img src={img} alt={alt} width={w} height={h} loading="lazy" decoding="async" />
+                <img src={p.image} alt={p.alt} width={p.w} height={p.h} loading="lazy" decoding="async" />
               </div>
               <div className="h-info">
-                <div className="kicker mono"><span>{p.number} / {p.category}</span><span className="status">{p.status}</span></div>
+                <div className="kicker mono"><span>{String(i + 1).padStart(2, '0')} / {p.category}</span><span className="status">{p.status}</span></div>
                 <h3>{p.name}</h3>
                 <p className="headline">{p.headline}</p>
                 <p className="desc">{p.description}</p>
@@ -162,11 +183,18 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="container more" aria-labelledby="t-mais">
+        <h3 id="t-mais" className="more-title">Outros trabalhos</h3>
+        <ul className="more-list">
+          {moreProjects.map(m => <li key={m.name}><Ext href={m.demo}><b>{m.name}</b><span>{m.text}</span></Ext></li>)}
+        </ul>
+      </section>
+
       {/* 7. Provas sociais */}
       <section className="proof" aria-labelledby="t-proof">
         <div className="container">
           <div className="section-head" data-reveal>
-            <div><Label n="06">RESULTADOS</Label><h2 id="t-proof" className="h2">Trabalho que<br /><span className="muted">já está no ar.</span></h2></div>
+            <div><Label n="07">RESULTADOS</Label><h2 id="t-proof" className="h2">Trabalho que<br /><span className="muted">já está no ar.</span></h2></div>
             <p className="muted-p">Números contados a partir dos projetos publicados.</p>
           </div>
           <dl className="stats">{proofStats.map(s => <div key={s.label}><dd data-count={s.value}>{s.value}</dd><dt>{s.label}</dt></div>)}</dl>
@@ -182,7 +210,7 @@ export default function Home() {
       <section className="container section" id="processo" aria-labelledby="t-proc">
         <div className="split">
           <div className="split-side sticky">
-            <Label n="07">COMO FUNCIONA</Label>
+            <Label n="08">COMO FUNCIONA</Label>
             <h2 id="t-proc" className="h2">Três passos,<br /><span className="serif accent">sem complicação.</span></h2>
             <p className="muted-p">Você aprova o visual antes de qualquer publicação.</p>
           </div>
@@ -198,7 +226,7 @@ export default function Home() {
         <div className="aurora aurora-low" aria-hidden="true"><i /><i /><i /></div>
         <div className="container order-grid">
           <div data-reveal>
-            <Label n="08">PEDIR ORÇAMENTO</Label>
+            <Label n="09">PEDIR ORÇAMENTO</Label>
             <h2 id="t-pedido" className="h2">Monte seu pedido<br /><span className="serif accent">em 30 segundos.</span></h2>
             <p className="muted-p">Responda quatro perguntas e a conversa no WhatsApp já começa com tudo o que eu preciso para te passar uma proposta.</p>
             <div className="cities">
@@ -215,7 +243,7 @@ export default function Home() {
       <section className="about" id="sobre" aria-labelledby="t-sobre">
         <div className="container about-grid">
           <div data-reveal>
-            <Label n="09">QUEM FAZ</Label>
+            <Label n="10">QUEM FAZ</Label>
             <h2 id="t-sobre" className="h2">O contexto vem<br /><span className="serif accent">antes do código.</span></h2>
             <p className="lead">Sou Bruna Rodrigues de Jesus, desenvolvedora full stack.</p>
             <p className="muted-p">Sou técnica em Informática pela UFV Campus Florestal. No TCC criei o Educash, uma plataforma web de educação financeira para crianças, e foi ali que gostei de levar uma ideia do rascunho até algo que as pessoas usam.</p>
@@ -229,7 +257,7 @@ export default function Home() {
       {/* 11. Dúvidas */}
       <section className="container section" id="duvidas" aria-labelledby="t-faq">
         <div className="split">
-          <div className="split-side"><Label n="10">DÚVIDAS</Label><h2 id="t-faq" className="h2">Antes de começar,<br /><span className="muted">o que mais perguntam.</span></h2></div>
+          <div className="split-side"><Label n="11">DÚVIDAS</Label><h2 id="t-faq" className="h2">Antes de começar,<br /><span className="muted">o que mais perguntam.</span></h2></div>
           <div className="faq">{faq.map((f, i) => <details key={f.q} className="details" open={i === 0}><summary>{f.q} <span aria-hidden="true">+</span></summary><div><p>{f.a}</p></div></details>)}</div>
         </div>
       </section>
