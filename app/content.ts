@@ -155,7 +155,7 @@ export const projects: Project[] = [
     extra: [{ label: 'Ver receitas', href: 'https://ovodionca.com.br/Receitas.html' }],
     note: 'Site oficial no ar. O painel de gestão ainda não está publicado.',
     image: '/projetos/ovodionca.webp', w: 799, h: 609, alt: 'Site oficial do Ovo di Onça com galinhas soltas ao fundo e o título Ovos caipiras fresquinhos, com sabor de verdade', tone: 'warm', ready: true },
-  { id: 'vertice', name: 'Vértice', category: 'LOJA VIRTUAL', status: 'Demonstração',
+  { id: 'vertice', name: 'Vértice', category: 'LOJA VIRTUAL', status: 'No ar · demonstração',
     headline: 'Da vitrine ao pedido aprovado.',
     description: 'Loja de eletrônicos completa: vitrine, sacola, cupom, checkout com Pix ou cartão de teste, acompanhamento de pedidos e painel administrativo.',
     problem: 'Mostrar o caminho inteiro de uma compra online com regras de verdade no servidor: preço, cupom e estoque conferidos antes de criar o pedido, sem confiar no total do navegador.',
@@ -167,13 +167,16 @@ export const projects: Project[] = [
       'Testes automatizados de preços, cupom, concorrência, permissões e estorno',
     ],
     technologies: ['React', 'Next.js (Vinext)', 'TypeScript', 'Cloudflare D1', 'Drizzle', 'Tailwind CSS'],
-    demo: '', demoLabel: 'loja demonstrativa',
-    note: 'Pagamentos, fretes e produtos são de teste; nenhuma cobrança é feita. Layout inspirado no projeto aberto Loja Virtual, de Ryan Menezes (licença MIT). A demonstração é privada: peça o acesso pelo WhatsApp.',
+    demo: 'https://vertice-two-beryl.vercel.app', demoLabel: 'vertice-two-beryl.vercel.app',
+    note: 'Pagamentos, fretes e produtos são de teste; nenhuma cobrança é feita. Na demonstração publicada, os dados ficam salvos só no seu navegador. Layout inspirado no projeto aberto Loja Virtual, de Ryan Menezes (licença MIT).',
     image: '/projetos/vertice.webp', w: 1200, h: 750, alt: 'Página inicial da loja Vértice com headphone em destaque e vitrine de notebook', tone: 'lilac', ready: true },
 ];
 
 /* Outros trabalhos, em lista compacta */
 export const moreProjects = [
+  { name: 'EduCash', text: 'Plataforma de educação financeira (TCC do técnico): painel, transações, relatórios, metas e quiz.', demo: 'https://ovodionca.com.br/Teste/EduCash/' },
+  { name: 'StudySoft', text: 'App de estudos com Pomodoro, revisão espaçada, flashcards, modo foco, método Cornell e simulados.', demo: 'https://ovodionca.com.br/Teste/StudySoft/' },
+  { name: 'Limpeza Perfeita', text: 'Guia de limpeza e organização da casa, com rotina da semana, checklists e hábitos.', demo: 'https://ovodionca.com.br/Teste/Limpeza%20perfeita/' },
   { name: 'FindOfertas', text: 'Comparador do custo real de uma compra, com frete, cupons, cashback e pontos.', demo: 'https://find-ofertas.vercel.app' },
   { name: 'Second Brain', text: 'Aplicativo pessoal de anotações com login Google e dados na nuvem.', demo: 'https://second-brain-lovat-psi.vercel.app' },
   { name: 'Landing pages locais', text: 'Modelos para barbearia, buffet infantil e clínicas odontológicas.', demo: 'https://l-pbarbearia.vercel.app' },
@@ -188,7 +191,7 @@ export const landingPages = [
 
 /* Provas sociais: números contados a partir dos projetos acima */
 export const proofStats = [
-  { value: '11', label: 'sites e aplicações publicados' },
+  { value: '15', label: 'sites e aplicações publicados' },
   { value: '6', label: 'segmentos: alimentação, eventos, saúde, beleza, casa e decoração, tecnologia' },
   { value: '1', label: 'negócio real em funcionamento com site oficial: o Ovo di Onça' },
 ];

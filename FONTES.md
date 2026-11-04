@@ -73,3 +73,4 @@ Lidas na pasta "05 - Projetos" da titular:
 - Fonte: README.md de cada projeto em "05 - Projetos" e os sites publicados (orla-objects.vercel.app, vetra-studio.vercel.app).
 - Fotos: capturas das páginas iniciais publicadas (public/projetos/orla.webp e vetra.webp).
 - Bruma Café e Nimbo: capturas dos sites publicados (bruma-cafe-omega.vercel.app e nimbo-lilac.vercel.app/visao-geral?demo=1).
+- Outros trabalhos: EduCash, StudySoft e Limpeza Perfeita publicados em ovodionca.com.br/Teste (página de links da Bruna). Vértice publicada em vertice-two-beryl.vercel.app (dados da demonstração ficam no navegador).

@@ -132,11 +132,11 @@ export default function Home() {
             <div>
               <h3>Quer vender os seus produtos online?</h3>
               <p>Eu monto a loja com a sua marca, os seus produtos e as formas de entrega da sua região. Para vender de verdade, ela é ligada a um serviço de pagamento (Pix e cartão) e de frete, escolhidos com você no orçamento.</p>
-              <p className="note">Telas reais da Vértice em modo de demonstração: produtos, pagamentos e fretes de teste, sem cobrança.</p>
+              <p className="note">Telas reais da Vértice em modo de demonstração: produtos, pagamentos e fretes de teste, sem cobrança. As regras acima são da versão completa, com banco de dados.</p>
             </div>
             <div className="shop-cta-actions">
               <Ext href={whatsapp('Olá, Bruna! Quero uma loja virtual para vender os meus produtos.')} className="button primary" arrow={false}><Wa /> Quero minha loja virtual</Ext>
-              <Ext href={whatsapp('Olá, Bruna! Quero ver a demonstração da loja Vértice.')} className="text-link">Pedir uma demonstração ao vivo</Ext>
+              <Ext href="https://vertice-two-beryl.vercel.app" className="text-link">Testar a loja Vértice</Ext>
             </div>
           </div>
         </div>
