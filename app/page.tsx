@@ -33,7 +33,7 @@ export default function Home() {
     <header className="nav-wrap">
       <nav className="nav liquid" aria-label="Navegação principal">
         <a className="signature" href="#inicio" aria-label="Bruna Rodrigues, início">br<span className="accent">.</span><span className="nav-name">Bruna Rodrigues</span></a>
-        <div className="nav-links"><a href="#segmentos">Exemplos</a><a href="#lojas">Lojas virtuais</a><a href="#incluso">O que inclui</a><a href="#projetos">Projetos</a><a href="#pedido">Pedir orçamento</a></div>
+        <div className="nav-links"><a href="#segmentos">Exemplos</a><a href="#lojas">Lojas virtuais</a><a href="#gestao-clientes">Gestão de clientes</a><a href="#incluso">O que inclui</a><a href="#projetos">Projetos</a><a href="#pedido">Pedir orçamento</a></div>
         <Ext href={whatsapp(orcamento)} className="nav-cta">Quero meu site</Ext>
       </nav>
     </header>
@@ -113,6 +113,17 @@ export default function Home() {
             <p className="muted-p">Escolha o seu tipo de negócio e abra um modelo publicado.</p>
           </div>
           <Segments />
+      <section className="container section client-management" id="gestao-clientes" aria-labelledby="t-gestao">
+        <div className="section-head"><div><p className="label"><span className="label-n">GESTÃO /</span> DO PRIMEIRO CONTATO AO ATENDIMENTO</p><h2 id="t-gestao" className="h2">Seu site recebe.<br /><span className="serif accent">Você gerencia.</span></h2></div><p className="muted-p">Uma área dedicada a clientes, horários e atendimentos. Experimente os dois lados de uma mesma reserva no Vetra Studio.</p></div>
+        <div className="management-grid">
+          <article className="management-card"><span className="label">01 / CLIENTE</span><h3>Agendar ficou simples.</h3><p>Serviço, profissional, data e horário, com duração e bloqueio de conflitos. Uma confirmação reúne os detalhes do atendimento.</p><Ext href="https://vetra-studio.vercel.app/agendamento-demo/index.html" className="button primary">Fazer um agendamento</Ext></article>
+          <article className="management-card"><span className="label">02 / EMPRESA</span><h3>A rotina sob controle.</h3><p>Consulte os clientes de cada reserva, navegue pelo calendário, filtre a agenda e acompanhe atendimentos confirmados, concluídos e cancelados.</p><Ext href="https://vetra-studio.vercel.app/agendamento-demo/owner.html" className="button glass-btn">Abrir painel de gestão</Ext></article>
+        </div>
+        <div className="management-features">{[['Calendário','Escolha um dia do mês e consulte os atendimentos.'],['Clientes','Veja o nome e contato associados a cada reserva.'],['Cancelamentos','Cancele um atendimento e libere o horário na agenda.'],['Acompanhamento','Filtre por profissional e status e confira o valor previsto.']].map(([title,text])=><article key={title}><Check /><h3>{title}</h3><p>{text}</p></article>)}</div>
+        <div className="management-note"><strong>Teste o fluxo completo</strong><p>1. Agende com dados fictícios. 2. Abra o painel da empresa. 3. Localize a reserva no calendário e experimente concluir ou cancelar.</p><small>Demonstração local: use as duas páginas no mesmo navegador. Os dados ficam neste dispositivo; banco de dados, autenticação e sincronização entre dispositivos fazem parte de uma integração de produção.</small></div>
+        <div className="hero-actions"><Ext href={whatsapp('Olá, Bruna! Quero um site com gestão de clientes, calendário e agendamentos.')} className="button primary">Quero essa gestão no meu negócio</Ext></div>
+      </section>
+
         </div>
       </section>
 
